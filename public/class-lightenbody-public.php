@@ -3,7 +3,7 @@
 /**
  * The public-facing functionality of the plugin.
  *
- * @link       http://wp.pl
+ * @link       http://lightenbody.pl
  * @since      1.0.0
  *
  * @package    Lightenbody
@@ -18,7 +18,7 @@
  *
  * @package    Lightenbody
  * @subpackage Lightenbody/public
- * @author     lightenbody <info@lb.com>
+ * @author     lightenbody <info@lightenbody.com>
  */
 class Lightenbody_Public {
 
@@ -102,7 +102,6 @@ class Lightenbody_Public {
 
 		wp_enqueue_script('magnific-popup', plugin_dir_url(__FILE__) . 'js/vendor/jquery.magnific-popup.min.js', array('jquery'), $this->version, false);
 		wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/lightenbody-public.js', array('jquery'), $this->version, true);
-
 	}
 
 	public function register_shortcodes()
@@ -115,8 +114,7 @@ class Lightenbody_Public {
 	 */
 	public function get_lightenbody_schedule() 
 	{
-
-		//Grab all options
+		// core objects
 		$options = get_option($this->plugin_name);
 
 		$uuid = $options['uuid'];
@@ -132,7 +130,7 @@ class Lightenbody_Public {
 		
 		if(200 === $responseCode) 
 		{
-			$locale = 'pl_PL';
+			$locale = get_locale();
 			$host = 'http://local.studio/app_dev.php/';
 			$schedule = $result->schedule;
 
