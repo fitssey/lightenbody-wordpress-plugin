@@ -3,7 +3,7 @@
 /**
  * The admin-specific functionality of the plugin.
  *
- * @link       http://wp.pl
+ * @link       http://lightenbody.pl
  * @since      1.0.0
  *
  * @package    Lightenbody
@@ -18,7 +18,7 @@
  *
  * @package    Lightenbody
  * @subpackage Lightenbody/admin
- * @author     lightenbody <info@lb.com>
+ * @author     lightenbody <info@lightenbody.com>
  */
 class Lightenbody_Admin {
 

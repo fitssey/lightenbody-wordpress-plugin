@@ -3,7 +3,7 @@
 /**
  * Fired during plugin activation
  *
- * @link       http://wp.pl
+ * @link       http://lightenbody.pl
  * @since      1.0.0
  *
  * @package    Lightenbody
@@ -18,7 +18,7 @@
  * @since      1.0.0
  * @package    Lightenbody
  * @subpackage Lightenbody/includes
- * @author     lightenbody <info@lb.com>
+ * @author     lightenbody <info@lightenbody.com>
  */
 class Lightenbody_Activator {
 

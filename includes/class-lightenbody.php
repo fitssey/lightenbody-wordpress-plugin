@@ -6,7 +6,7 @@
  * A class definition that includes attributes and functions used across both the
  * public-facing side of the site and the admin area.
  *
- * @link       http://wp.pl
+ * @link       http://lightenbody.pl
  * @since      1.0.0
  *
  * @package    Lightenbody
@@ -25,7 +25,7 @@
  * @since      1.0.0
  * @package    Lightenbody
  * @subpackage Lightenbody/includes
- * @author     lightenbody <info@lb.com>
+ * @author     lightenbody <info@lightenbody.com>
  */
 class Lightenbody {
 

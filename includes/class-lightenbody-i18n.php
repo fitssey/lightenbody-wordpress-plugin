@@ -6,7 +6,7 @@
  * Loads and defines the internationalization files for this plugin
  * so that it is ready for translation.
  *
- * @link       http://wp.pl
+ * @link       http://lightenbody.pl
  * @since      1.0.0
  *
  * @package    Lightenbody
@@ -22,7 +22,7 @@
  * @since      1.0.0
  * @package    Lightenbody
  * @subpackage Lightenbody/includes
- * @author     lightenbody <info@lb.com>
+ * @author     lightenbody <info@lightenbody.com>
  */
 class Lightenbody_i18n {
 

@@ -8,17 +8,17 @@
  * registers the activation and deactivation functions, and defines a function
  * that starts the plugin.
  *
- * @link              http://wp.pl
+ * @link              http://lightenbody.pl
  * @since             1.0.0
  * @package           Lightenbody
  *
  * @wordpress-plugin
  * Plugin Name:       lightenbody
- * Plugin URI:        http://wp.pl
+ * Plugin URI:        http://lightenbody.pl
  * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
  * Version:           1.0.0
  * Author:            lightenbody
- * Author URI:        http://wp.pl
+ * Author URI:        http://lightenbody.pl
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       lightenbody
