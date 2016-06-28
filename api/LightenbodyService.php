@@ -1,5 +1,24 @@
 <?php
 
+/**
+ * Class LightenbodyService
+ *
+ * This class helps connecting to lightenbody Service.
+ *
+ * It consists of a several methods to exchange data from and to lightenbody Service.
+ *
+ * PHP version 5
+ *
+ * LICENSE: This source file is subject to version GPL v2.0 or later of the gnu.org license
+ * that is available through the world-wide-web at the following URI:
+ * http://www.gnu.org/licenses/gpl-2.0.html
+ *
+ * @author     Grzegorz Tomasiak <grzegorz@lightenbody.com>
+ * @copyright  (c) 2016 lightenbody
+ * @license    http://www.gnu.org/licenses/gpl-2.0.html GPL v2.0 or later
+ * @version    0.10
+ * @link       http://lightenbody.com
+ */
 class LightenbodyService
 {
     private $apiKey;
@@ -8,6 +27,15 @@ class LightenbodyService
     private $host;
     private $responseCode;
 
+    /**
+     * LightenbodyService constructor requires a several variables to be able to connect to the Service.
+     * Each of the required parameters can be obtain in your Studio settings.
+     *
+     * @param string $uuid Unique Identifier (UUID) of the Studio.
+     * @param string $apiGuid Globally Unique Identifier (GUID) of the Api credentials.
+     * @param string $apiKey Key retrieved from the API credentials.
+     * @param string $apiSource Source retrieved from the Api credentials.
+     */
     public function __construct($uuid, $apiGuid, $apiKey, $apiSource)
     {
         $this->uuid = $uuid;
@@ -17,26 +45,55 @@ class LightenbodyService
         $this->host = "http://local.studio/app_dev.php/$uuid";
     }
 
-    public function getSchedule()
+    /**
+     * Returns a Schedule of the Studio by the given range of dates and filters.
+     *
+     * @param DateTime $startDate Start date of the Schedule.
+     * @param DateTime $endDate End date of the Schedule.
+     * @param array $filters An array with filters.
+     * @see http://studio.lightenbody.com/api/doc#post--{uuid}-api-schedule
+     * @return array
+     */
+    public function getSchedule(\DateTime $startDate, \DateTime $endDate, array $filters = array())
     {
-        return $this->call("$this->host/api/schedule");
+        $data = array(
+            'filters'   => http_build_query($filters),
+            'startDate' => $startDate->format('Y-m-d'),
+            'endDate'   => $endDate->format('Y-m-d')
+        );
+        
+        return $this->call("$this->host/api/schedule", $data);
     }
 
+    /**
+     * Performs a test connection against the Api.
+     * It returns 200 OK status whether the connection was successful.
+     *
+     * @return array
+     */
     public function testConnection()
     {
         return $this->call("$this->host/api/test");
     }
 
-    private function call($url)
+    /**
+     * Internal method that calls the Service of lightenbody with the given data.
+     *
+     * @param string $url Url of the Service.
+     * @param array $data An array with data to send along with the call.
+     * @return array|mixed|object
+     */
+    private function call($url, array $data = array())
     {
         $curl = curl_init();
-        curl_setopt($curl, CURLOPT_HTTPHEADER, [
+        curl_setopt($curl, CURLOPT_HTTPHEADER, array(
             "X-lightenbody-api-key: $this->apiKey",
             "X-lightenbody-api-source: $this->apiSource",
             "X-lightenbody-api-guid: $this->apiGuid"
-        ]);
+        ));
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_POST, 1);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 
         $result = curl_exec($curl);
@@ -46,27 +103,52 @@ class LightenbodyService
         return json_decode($result);
     }
 
+    /**
+     * Returns the Api Key.
+     *
+     * @return string
+     */
     public function getApiKey()
     {
         return $this->apiKey;
     }
 
+    /**
+     * Returns the Api Source.
+     *
+     * @return string
+     */
     public function getApiSource()
     {
         return $this->apiSource;
     }
 
+    /**
+     * Returns Studio Unique Identifier (UUID)
+     * @return string
+     */
     public function getUuid()
     {
         return $this->uuid;
     }
 
+    /**
+     * Returns the last response code of the call.
+     *
+     * @return integer
+     */
     public function getResponseCode()
     {
         return $this->responseCode;
     }
 
-    public function setResponseCode($code)
+    /**
+     * Sets the response code internally.
+     *
+     * @param $code
+     * @return $this
+     */
+    private function setResponseCode($code)
     {
         $this->responseCode = $code;
         return $this;

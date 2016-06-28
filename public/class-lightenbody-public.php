@@ -125,10 +125,10 @@ class Lightenbody_Public {
 		require_once __DIR__ . '/../api/LightenbodyService.php';
 
 		$lightenbodyService = new LightenbodyService($uuid, $apiGuid, $apiKey, $apiSource);
-		$result = $lightenbodyService->getSchedule();
+		$result = $lightenbodyService->getSchedule(new \DateTime(), new \DateTime('+6 days'));
 		$responseCode = $lightenbodyService->getResponseCode();
 		
-		if(200 === $responseCode) 
+		if(200 === $responseCode)
 		{
 			$locale = get_locale();
 			$host = 'http://local.studio/app_dev.php/';
