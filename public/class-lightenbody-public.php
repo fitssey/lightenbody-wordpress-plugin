@@ -130,8 +130,16 @@ class Lightenbody_Public {
 		
 		if(200 === $responseCode)
 		{
+			if(WP_DEBUG)
+			{
+				$host = LightenbodyService::LIGHTENBODY_DEV_HOST;
+			}
+			else
+			{
+				$host = LightenbodyService::LIGHTENBODY_PROD_HOST;
+			}
+
 			$locale = get_locale();
-			$host = 'http://local.studio/app_dev.php/';
 			$schedule = $result->schedule;
 
 			require_once 'partials/lightenbody-public-display.php';

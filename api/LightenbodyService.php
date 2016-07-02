@@ -21,6 +21,9 @@
  */
 class LightenbodyService
 {
+    const LIGHTENBODY_PROD_HOST = 'http://studio.lightenbody.com';
+    const LIGHTENBODY_DEV_HOST = 'http://studio-dev.lightenbody.com';
+
     private $apiKey;
     private $apiSource;
     private $uuid;
@@ -35,14 +38,17 @@ class LightenbodyService
      * @param string $apiGuid Globally Unique Identifier (GUID) of the Api credentials.
      * @param string $apiKey Key retrieved from the API credentials.
      * @param string $apiSource Source retrieved from the Api credentials.
+     * @param string $host You can override the default host setting, only if you know what you're doing.
      */
-    public function __construct($uuid, $apiGuid, $apiKey, $apiSource)
+    public function __construct($uuid, $apiGuid, $apiKey, $apiSource, $host = null)
     {
         $this->uuid = $uuid;
         $this->apiGuid = $apiGuid;
         $this->apiKey = $apiKey;
         $this->apiSource = $apiSource;
-        $this->host = "http://local.studio/app_dev.php/$uuid";
+
+        if($host) $this->host = $host;
+        else $this->host = self::LIGHTENBODY_DEV_HOST . "/$uuid";
     }
 
     /**
