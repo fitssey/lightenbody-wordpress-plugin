@@ -79,7 +79,8 @@ class LightenbodyService
      */
     public function testConnection()
     {
-        return $this->call("$this->host/api/test");
+        $result = $this->call("$this->host/api/test");
+        return $result;
     }
 
     /**
@@ -106,7 +107,10 @@ class LightenbodyService
         $info = curl_getinfo($curl);
         $this->setResponseCode($info['http_code']);
 
-        return json_decode($result);
+        $data = json_decode($result);
+        
+        if($data) return $data;
+        else return $result;
     }
 
     /**
