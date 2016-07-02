@@ -5,25 +5,8 @@
         <form method="post" name="cleanup_options" action="options.php">
 
             <?php
-            //Grab all options
-            $options = get_option($this->plugin_name);
-
-            $uuid = $options['uuid'];
-            $apiGuid = $options['api_guid'];
-            $apiKey = $options['api_key'];
-            $apiSource = $options['api_source'];
-
-            require_once __DIR__ . '/../../api/LightenbodyService.php';
-
-            $lightenbodyService = new LightenbodyService($uuid, $apiGuid, $apiKey, $apiSource);
-            $result = $lightenbodyService->testConnection();
-            $responseCode = $lightenbodyService->getResponseCode();
-
-            ?>
-
-            <?php
-            settings_fields($this->plugin_name);
-            do_settings_sections($this->plugin_name);
+                settings_fields($this->plugin_name);
+                do_settings_sections($this->plugin_name);
             ?>
 
             <label for="<?php echo $this->plugin_name; ?>-uuid">Your studio uuid</label>

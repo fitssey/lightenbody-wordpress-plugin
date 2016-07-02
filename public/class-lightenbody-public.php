@@ -114,6 +114,8 @@ class Lightenbody_Public {
 	 */
 	public function get_lightenbody_schedule() 
 	{
+		require_once __DIR__ . '/../api/LightenbodyService.php';
+
 		// core objects
 		$options = get_option($this->plugin_name);
 
@@ -122,25 +124,18 @@ class Lightenbody_Public {
 		$apiKey = $options['api_key'];
 		$apiSource = $options['api_source'];
 
-		require_once __DIR__ . '/../api/LightenbodyService.php';
-
 		$lightenbodyService = new LightenbodyService($uuid, $apiGuid, $apiKey, $apiSource);
-		$result = $lightenbodyService->getSchedule(new \DateTime(), new \DateTime('+6 days'));
+		$result = $lightenbodyService
+			->setIsDebug(WP_DEBUG)
+			->getSchedule(new \DateTime(), new \DateTime('+6 days'))
+		;
 		$responseCode = $lightenbodyService->getResponseCode();
 		
 		if(200 === $responseCode)
 		{
-			if(WP_DEBUG)
-			{
-				$host = LightenbodyService::LIGHTENBODY_DEV_HOST;
-			}
-			else
-			{
-				$host = LightenbodyService::LIGHTENBODY_PROD_HOST;
-			}
-
 			$locale = get_locale();
 			$schedule = $result->schedule;
+			$host = $lightenbodyService->getHost();
 
 			require_once 'partials/lightenbody-public-display.php';
 			return null;

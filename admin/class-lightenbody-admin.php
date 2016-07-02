@@ -120,7 +120,24 @@ class Lightenbody_Admin {
 	 */
 
 	public function display_plugin_setup_page() {
-		include_once( 'partials/lightenbody-admin-display.php' );
+
+		require_once __DIR__ . '/../api/LightenbodyService.php';
+
+		//Grab all options
+		$options = get_option($this->plugin_name);
+
+		$uuid = $options['uuid'];
+		$apiGuid = $options['api_guid'];
+		$apiKey = $options['api_key'];
+		$apiSource = $options['api_source'];
+
+		$lightenbodyService = new LightenbodyService($uuid, $apiGuid, $apiKey, $apiSource);
+		$result = $lightenbodyService
+			->setIsDebug(WP_DEBUG)
+			->testConnection();
+		$responseCode = $lightenbodyService->getResponseCode();
+
+		require_once 'partials/lightenbody-admin-display.php';
 	}
 
 	public function validate($input) {

@@ -27,8 +27,9 @@ class LightenbodyService
     private $apiKey;
     private $apiSource;
     private $uuid;
-    private $host;
     private $responseCode;
+    private $debug = false;
+    private $host;
 
     /**
      * LightenbodyService constructor requires a several variables to be able to connect to the Service.
@@ -38,17 +39,13 @@ class LightenbodyService
      * @param string $apiGuid Globally Unique Identifier (GUID) of the Api credentials.
      * @param string $apiKey Key retrieved from the API credentials.
      * @param string $apiSource Source retrieved from the Api credentials.
-     * @param string $host You can override the default host setting, only if you know what you're doing.
      */
-    public function __construct($uuid, $apiGuid, $apiKey, $apiSource, $host = null)
+    public function __construct($uuid, $apiGuid, $apiKey, $apiSource)
     {
         $this->uuid = $uuid;
         $this->apiGuid = $apiGuid;
         $this->apiKey = $apiKey;
         $this->apiSource = $apiSource;
-
-        if($host) $this->host = $host;
-        else $this->host = self::LIGHTENBODY_DEV_HOST . "/$uuid";
     }
 
     /**
@@ -68,7 +65,7 @@ class LightenbodyService
             'endDate'   => $endDate->format('Y-m-d')
         );
         
-        return $this->call("$this->host/api/schedule", $data);
+        return $this->call('/api/schedule', $data);
     }
 
     /**
@@ -79,19 +76,26 @@ class LightenbodyService
      */
     public function testConnection()
     {
-        $result = $this->call("$this->host/api/test");
+        $result = $this->call('/api/test');
         return $result;
     }
 
     /**
      * Internal method that calls the Service of lightenbody with the given data.
      *
-     * @param string $url Url of the Service.
+     * @param string $endpoint Api endpoint.
      * @param array $data An array with data to send along with the call.
      * @return array|mixed|object
      */
-    private function call($url, array $data = array())
+    private function call($endpoint, array $data = array())
     {
+        // determine the host
+        $this->host = ($this->debug) ? self::LIGHTENBODY_DEV_HOST : self::LIGHTENBODY_PROD_HOST;
+
+        // compose the url
+        $url = $this->host . '/' . $this->uuid . $endpoint;
+
+        // setup the curl
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_HTTPHEADER, array(
             "X-lightenbody-api-key: $this->apiKey",
@@ -161,6 +165,23 @@ class LightenbodyService
     private function setResponseCode($code)
     {
         $this->responseCode = $code;
+        return $this;
+    }
+
+    public function getHost()
+    {
+        return $this->host;
+    }
+
+    public function setIsDebug($debug)
+    {
+        $this->debug = $debug;
+        return $this;
+    }
+    
+    public function debug()
+    {
+        $this->debug = true;
         return $this;
     }
 }
