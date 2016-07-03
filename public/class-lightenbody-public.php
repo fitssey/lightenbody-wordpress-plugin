@@ -137,8 +137,12 @@ class Lightenbody_Public {
 			$schedule = $result->schedule;
 			$host = $lightenbodyService->getHost();
 
+			ob_start();
 			require_once 'partials/lightenbody-public-display.php';
-			return null;
+			$output = ob_get_contents();;
+			ob_end_clean();
+
+			return $output;
 		}
 
 		return 'Can\'t get the schedule. Please review your settings in Admin.';
