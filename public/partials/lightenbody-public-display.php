@@ -23,7 +23,7 @@
                     <td><?php echo $class->member->user->fullName; ?></td>
                     <td><?php echo $class->classroom->programLevel->name->{"$locale"}->value; ?></td>
                     <td><?php echo $class->room->location->name->{"$locale"}->value; ?></td>
-                    <td><a class="lightenbody-schedule-signup-link" href="<?php echo "$host/$uuid/frontoffice/widget,$locale,iframe," . $class->referenceId ."," . $class->guid . "," . (new DateTime($class->bookingDate))->format('Y-m-d'); ?>">Zapisz się</a></td>
+                    <td><a class="lightenbody-schedule-signup-link" href="<?php echo "$host/$uuid/frontoffice/widget,$locale,iframe," . $class->referenceId ."," . $class->guid . "," . (new DateTime($class->bookingDate))->format('Y-m-d') . ',' . $class->startTime . ',' . $class->endTime; ?>">Zapisz się</a></td>
                 </tr>
             <?php endforeach; ?>
         <?php endif;?>
