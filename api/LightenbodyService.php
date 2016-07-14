@@ -106,13 +106,14 @@ class LightenbodyService
         curl_setopt($curl, CURLOPT_POST, 1);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($curl, CURLOPT_REFERER, $_SERVER['HTTP_HOST']);
 
         $result = curl_exec($curl);
         $info = curl_getinfo($curl);
         $this->setResponseCode($info['http_code']);
 
         $data = json_decode($result);
-        
+
         if($data) return $data;
         else return $result;
     }
