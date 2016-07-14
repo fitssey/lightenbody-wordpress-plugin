@@ -143,7 +143,6 @@ class Lightenbody_Admin {
 	public function validate($input) {
 		$valid = array();
 
-		//Cleanup
 		$valid['uuid'] = $input['uuid'];
 		$valid['api_guid'] = $input['api_guid'];
 		$valid['api_key'] = $input['api_key'];
