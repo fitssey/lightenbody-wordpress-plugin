@@ -3,6 +3,10 @@
  * included in this file.
  */
 
-.mfp-iframe-scaler iframe {
+.mfp-content .mfp-iframe-scaler iframe {
     background-color: #fff;
+}
+
+.mfp-content .mfp-iframe-scaler .mfp-close:hover {
+    background-color: transparent !important;
 }
