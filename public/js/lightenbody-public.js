@@ -29,7 +29,7 @@
 	 * practising this, we should strive to set a better example in our own work.
 	 */
 
-	$('.lightenbody-schedule-signup-link').magnificPopup({
+	$('.lb-schedule-body-booking-link').magnificPopup({
 		type: 'iframe'
 	});
 
