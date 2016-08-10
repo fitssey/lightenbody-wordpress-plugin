@@ -130,7 +130,7 @@ class Lightenbody_Public {
 			->getSchedule(new \DateTime(), new \DateTime('+6 days'))
 		;
 		$responseCode = $lightenbodyService->getResponseCode();
-		
+
 		if(200 === $responseCode)
 		{
 			$locale = get_locale();

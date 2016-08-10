@@ -21,8 +21,8 @@
  */
 class LightenbodyService
 {
-    const LIGHTENBODY_PROD_HOST = 'http://studio.lightenbody.com';
-    const LIGHTENBODY_DEV_HOST = 'http://studio-dev.lightenbody.com';
+    const LIGHTENBODY_PROD_HOST = 'https://studio.lightenbody.com';
+    const LIGHTENBODY_DEV_HOST = 'https://studio-dev.lightenbody.com';
 
     private $apiKey;
     private $apiSource;
