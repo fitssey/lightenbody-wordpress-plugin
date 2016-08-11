@@ -19,18 +19,22 @@
                         <tr><td class="lb-schedule-table-body-error-message" colspan="6">Brak zajęć na dziś</td></tr>
                     <?php else: ;?>
                         <?php foreach($item->schedule as $class): ?>
-                            <tr id="<?php echo $class->referenceId; ?>">
-                                <td class="lb-schedule-table-body-time"><?php echo $class->startTime . ' - ' . $class->endTime; ?></td>
-                                <td class="lb-schedule-table-body-class"><?php echo $class->classroom->name->{"$locale"}->value; ?></td>
-                                <td class="lb-schedule-table-body-member"><?php echo $class->member->user->fullName; ?></td>
-                                <td class="lb-schedule-table-body-level"><?php echo $class->classroom->programLevel->name->{"$locale"}->value; ?></td>
-                                <td class="lb-schedule-table-body-location"><?php echo $class->room->location->name->{"$locale"}->value; ?></td>
-                                <?php if($class->isPast): ?>
-                                    <td class="lb-schedule-table-body-booking">Zajęcia już minęły.</td>
-                                <?php else: ?>
-                                    <td class="lb-schedule-table-body-booking"><a class="lb-schedule-body-booking-link" href="<?php echo "$host/$uuid/frontoffice/widget,$locale,iframe," . $class->referenceId ."," . $class->guid . "," . (new DateTime($class->bookingDate))->format('Y-m-d') . ',' . $class->startTime . ',' . $class->endTime; ?>">Zapisz się</a></td>
-                                <?php endif; ?>
-                            </tr>
+                            <?php if(!$class->isHidden): ?>
+                                <tr id="<?php echo $class->referenceId; ?>">
+                                    <td class="lb-schedule-table-body-time"><?php echo $class->startTime . ' - ' . $class->endTime; ?></td>
+                                    <td class="lb-schedule-table-body-class"><?php echo $class->classroom->name->{"$locale"}->value; ?></td>
+                                    <td class="lb-schedule-table-body-member"><?php echo $class->member->user->fullName; ?></td>
+                                    <td class="lb-schedule-table-body-level"><?php echo $class->classroom->programLevel->name->{"$locale"}->value; ?></td>
+                                    <td class="lb-schedule-table-body-location"><?php echo $class->room->location->name->{"$locale"}->value; ?></td>
+                                    <?php if($class->hasStarted): ?>
+                                        <td class="lb-schedule-table-body-booking-past">Zajęcia już minęły.</td>
+                                    <?php elseif($class->isCancelled): ?>
+                                        <td class="lb-schedule-table-body-booking-cancelled">Zajęcia zostały anulowane.</td>
+                                    <?php else: ?>
+                                        <td class="lb-schedule-table-body-booking"><a class="lb-schedule-body-booking-link" href="<?php echo "$host/$uuid/frontoffice/widget,$locale,iframe," . $class->referenceId ."," . $class->guid . "," . (new DateTime($class->bookingDate))->format('Y-m-d') . ',' . $class->startTime . ',' . $class->endTime; ?>">Zapisz się</a></td>
+                                    <?php endif; ?>
+                                </tr>
+                            <?php endif; ?>
                         <?php endforeach; ?>
                     <?php endif;?>
                     </tbody>
