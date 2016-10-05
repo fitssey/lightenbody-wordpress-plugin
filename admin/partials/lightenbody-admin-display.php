@@ -22,18 +22,22 @@
             <input id="<?php echo $this->plugin_name; ?>-api_key" name="<?php echo $this->plugin_name; ?>[api_key]" type="text" value="<?php echo $apiKey ?>">
             <br>
             <br>
-            <p>Connection:&nbsp;
-                <?php if(200 == $responseCode): ?>
-                    OK (200)
-                <?php elseif(404 == $responseCode): ?>
-                    Not found (404)
-                <?php elseif(403 == $responseCode): ?>
-                    Not authenticated (403)
-                <?php elseif(500 == $responseCode): ?>
-                    Internal issues (500)
-                <?php endif; ?>
-            </p>
-            <?php submit_button('Save', 'primary','submit', true); ?>
+            <?php if($error): ?>
+                <p>Error: <?php echo $error->getMessage(); ?></p>
+            <?php else: ?>
+                <p>Connection:&nbsp;
+                    <?php if(200 == $responseCode): ?>
+                        OK (200)
+                    <?php elseif(404 == $responseCode): ?>
+                        Not found (404)
+                    <?php elseif(403 == $responseCode): ?>
+                        Not authenticated (403)
+                    <?php elseif(500 == $responseCode): ?>
+                        Internal issues (500)
+                    <?php endif; ?>
+                </p>
+                <?php submit_button('Save', 'primary','submit', true); ?>
+            <?php endif; ?>
         </form>
     </div>
 </div>

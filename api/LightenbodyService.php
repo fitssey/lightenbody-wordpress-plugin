@@ -86,6 +86,7 @@ class LightenbodyService
      * @param string $endpoint Api endpoint.
      * @param array $data An array with data to send along with the call.
      * @return array|mixed|object
+     * @throws \Exception
      */
     private function call($endpoint, array $data = array())
     {
@@ -111,6 +112,11 @@ class LightenbodyService
         $result = curl_exec($curl);
         $info = curl_getinfo($curl);
         $this->setResponseCode($info['http_code']);
+
+        if($error = curl_error($curl))
+        {
+            throw new \Exception($error);
+        }
 
         $data = json_decode($result);
 

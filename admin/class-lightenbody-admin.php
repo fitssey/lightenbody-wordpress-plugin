@@ -132,10 +132,18 @@ class Lightenbody_Admin {
 		$apiSource = $options['api_source'];
 
 		$lightenbodyService = new LightenbodyService($uuid, $apiGuid, $apiKey, $apiSource);
-		$result = $lightenbodyService
-			->setIsDebug(WP_DEBUG)
-			->testConnection();
-		$responseCode = $lightenbodyService->getResponseCode();
+
+        try
+        {
+            $result = $lightenbodyService
+                ->setIsDebug(WP_DEBUG)
+                ->testConnection();
+            $responseCode = $lightenbodyService->getResponseCode();
+        }
+        catch(\Exception $error)
+        {
+
+        }
 
 		require_once 'partials/lightenbody-admin-display.php';
 	}
