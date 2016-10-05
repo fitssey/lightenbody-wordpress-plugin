@@ -110,9 +110,10 @@ class Lightenbody_Public {
 	}
 
 	/**
+	 * @param array $atts
 	 * @return string
 	 */
-	public function get_lightenbody_schedule() 
+	public function get_lightenbody_schedule($atts)
 	{
 		require_once __DIR__ . '/../api/LightenbodyService.php';
 
@@ -124,16 +125,23 @@ class Lightenbody_Public {
 		$apiKey = $options['api_key'];
 		$apiSource = $options['api_source'];
 
+        // provide short code default parameters
+        $atts = shortcode_atts(array(
+            'locale'        => get_locale(),
+            'start_date'    => new \DateTime(),
+            'end_date'      => new \DateTime('+6 days')
+        ), $atts);
+
 		$lightenbodyService = new LightenbodyService($uuid, $apiGuid, $apiKey, $apiSource);
 		$result = $lightenbodyService
 			->setIsDebug(WP_DEBUG)
-			->getSchedule(new \DateTime(), new \DateTime('+6 days'))
+			->getSchedule($atts['start_date'], $atts['end_date'])
 		;
 		$responseCode = $lightenbodyService->getResponseCode();
 
 		if(200 === $responseCode)
 		{
-			$locale = get_locale();
+			$locale = $atts['locale'];
 			$schedule = $result->schedule;
 			$host = $lightenbodyService->getHost();
 
