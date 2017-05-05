@@ -3,22 +3,25 @@ Contributors: lightenbody
 URL: http://lightenbody.com
 Tags: schedule, lightenbody
 Requires at least: 3.0.1
-Tested up to: 4.6
+Tested up to: 4.7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-This plugin connects to the lightenbody service and generates a studio schedule on the page.
-
 == Description ==
 
-lightenbody is an world-wide service that helps to manage studio by offering class schedule, managing events,
-storing user info in the database. Go to lightenbody.com to learn more.
+This plugin connects with lightenbody's api and enables you to display the schedule.
+
+lightenbody is a web-application that helps you manage your fitness studio by enabling online schedule, online payments, bookings, 
+personal account for each of your customers and many more features.
 
 == Installation ==
 
-Upload the plugin to your plugins directory, activate it and get the API key from your lightenbody's account.
+Upload the plugin to your plugins directory, activate it and get the api credentials from your lightenbody's account.
 
 == Changelog ==
+
+= 2.0 =
+* Support of lightenbody api v2.
 
 = 1.0 =
 * First release

@@ -15,23 +15,23 @@
                     </tr>
                     </thead>
                     <tbody class="lb-schedule-table-body">
-                    <?php if(!isset($item->schedule)): ?>
+                    <?php if(!isset($item->scheduleEvents)): ?>
                         <tr><td class="lb-schedule-table-body-error-message" colspan="6">Brak zajęć na dziś</td></tr>
                     <?php else: ;?>
-                        <?php foreach($item->schedule as $class): ?>
-                            <?php if(!$class->isHidden): ?>
-                                <tr id="<?php echo $class->referenceId; ?>">
-                                    <td class="lb-schedule-table-body-time"><?php echo $class->startTime . ' - ' . $class->endTime; ?></td>
-                                    <td class="lb-schedule-table-body-class"><?php echo $class->classroom->name->{"$locale"}->value; ?></td>
-                                    <td class="lb-schedule-table-body-member"><?php echo $class->member->user->fullName; ?></td>
-                                    <td class="lb-schedule-table-body-level"><?php echo $class->classroom->programLevel->name->{"$locale"}->value; ?></td>
-                                    <td class="lb-schedule-table-body-location"><?php echo $class->room->location->name->{"$locale"}->value; ?></td>
-                                    <?php if($class->hasStarted): ?>
+                        <?php foreach($item->scheduleEvents as $scheduleEvent): ?>
+                            <?php if(!$scheduleEvent->isHidden): ?>
+                                <tr id="<?php echo $scheduleEvent->referenceId; ?>">
+                                    <td class="lb-schedule-table-body-time"><?php echo $scheduleEvent->startTime . ' &ndash; ' . $scheduleEvent->endTime; ?></td>
+                                    <td class="lb-schedule-table-body-class"><?php echo $scheduleEvent->scheduleMeta->classService->name->{"$locale"}->value; ?></td>
+                                    <td class="lb-schedule-table-body-member"><?php echo $scheduleEvent->member->user->fullName; ?></td>
+                                    <td class="lb-schedule-table-body-level"><?php echo $scheduleEvent->scheduleMeta->classService->experienceLevel->name->{"$locale"}->value; ?></td>
+                                    <td class="lb-schedule-table-body-location"><?php echo $scheduleEvent->room->location->name->{"$locale"}->value; ?></td>
+                                    <?php if($scheduleEvent->hasStarted): ?>
                                         <td class="lb-schedule-table-body-booking-past">Zakończone</td>
-                                    <?php elseif($class->isCancelled): ?>
+                                    <?php elseif($scheduleEvent->isCancelled): ?>
                                         <td class="lb-schedule-table-body-booking-cancelled">Anulowane</td>
                                     <?php else: ?>
-                                        <td class="lb-schedule-table-body-booking"><a class="lb-schedule-body-booking-link" href="<?php echo "$host/$uuid/frontoffice,iframe/delegate/" . $class->referenceId . ',' . $class->guid . ',' . (new DateTime($class->bookingDate))->format('Y-m-d') . ',' . $class->startTime . ',' . $class->endTime . '?_locale=' . $locale . '&lightenbody-api-source=' . $apiSource; ?>">Zapisz się</a></td>
+                                        <td class="lb-schedule-table-body-booking"><a class="lb-schedule-body-booking-link" href="<?php echo "https://studio.lightenbody.com/$uuid/frontoffice,iframe/delegate/" . $scheduleEvent->referenceId . '?_locale=' . $locale . '&lightenbody-api-source=' . $apiSource; ?>">Zapisz się</a></td>
                                     <?php endif; ?>
                                 </tr>
                             <?php endif; ?>

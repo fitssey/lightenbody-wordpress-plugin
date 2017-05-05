@@ -22,7 +22,10 @@
             <input id="<?php echo $this->plugin_name; ?>-api_key" name="<?php echo $this->plugin_name; ?>[api_key]" type="text" value="<?php echo $apiKey ?>">
             <br>
             <br>
-            <?php if($error): ?>
+            <?php if($url): ?>
+                <p>Url: <?php echo $url; ?></p>
+            <?php endif; ?>
+            <?php if(isset($error)): ?>
                 <p>Error: <?php echo $error->getMessage(); ?></p>
             <?php else: ?>
                 <p>Connection:&nbsp;
@@ -36,8 +39,8 @@
                         Internal issues (500)
                     <?php endif; ?>
                 </p>
-                <?php submit_button('Save', 'primary','submit', true); ?>
             <?php endif; ?>
+            <?php submit_button('Save', 'primary','submit', true); ?>
         </form>
     </div>
 </div>
