@@ -25,8 +25,7 @@
 class LightenbodyService
 {
     private $apiVersion = 2;
-    //private $apiUrl = "https://studio.lightenbody.com/<uuid>/api/v<version>/public";
-    private $apiUrl = "http://local.studio/app_dev.php/<uuid>/api/v<version>/public";
+    private $apiUrl = "https://studio.lightenbody.com/<uuid>/api/v<version>/public";
     private $apiKey;
     private $apiSource;
     private $uuid;
