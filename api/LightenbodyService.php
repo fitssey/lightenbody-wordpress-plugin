@@ -1,6 +1,45 @@
 <?php
 
 /**
+ * Class NotFoundStudioUuidException
+ *
+ * An exception class thrown when no Studio UUID is present.
+ */
+class NotFoundStudioUuidException extends \Exception
+{
+    public function __construct($message = "Studio UUID must be set before making any requests!", $code = 0, Throwable $previous = null)
+    {
+        parent::__construct($message, $code, $previous);
+    }
+}
+
+/**
+ * Class NotFoundStudioApiKeyException
+ *
+ * An exception class thrown when no API KEY is present.
+ */
+class NotFoundStudioApiKeyException extends \Exception
+{
+    public function __construct($message = "API KEY must be set before making any requests!", $code = 0, Throwable $previous = null)
+    {
+        parent::__construct($message, $code, $previous);
+    }
+}
+
+/**
+ * Class NotFoundStudioApiGuidException
+ *
+ * An exception class thrown when no API GUID is present.
+ */
+class NotFoundStudioApiGuidException extends \Exception
+{
+    public function __construct($message = "API GUID must be set before making any requests!", $code = 0, Throwable $previous = null)
+    {
+        parent::__construct($message, $code, $previous);
+    }
+}
+
+/**
  * Class LightenbodyService
  *
  * This class helps to connect to lightenbody's api.
@@ -114,9 +153,9 @@ class LightenbodyService
         // compose the url
         $this->apiUrl = $this->apiUrl . '/' . ltrim($endpoint, '/');
 
-        if(!$this->uuid) throw new \RuntimeException('Uuid must be set before making any requests!');
-        if(!$this->apiKey) throw new \RuntimeException('Api key must be set before making any requests!');
-        if(!$this->apiGuid) throw new \RuntimeException('Api guid must be set before making any requests!');
+        if(!$this->uuid) throw new NotFoundStudioUuidException();
+        if(!$this->apiKey) throw new NotFoundStudioApiGuidException();
+        if(!$this->apiGuid) throw new NotFoundStudioApiGuidException();
 
         return $this->request($this->apiUrl, $httpVerb, $data);
     }
@@ -144,7 +183,7 @@ class LightenbodyService
             // setup the curl
             $curl = curl_init();
             curl_setopt($curl, CURLOPT_URL, $url);
-            curl_setopt($curl, CURLOPT_HTTPHEADER, array_merge($headers, []));
+            curl_setopt($curl, CURLOPT_HTTPHEADER, array_merge($headers, array()));
             curl_setopt($curl, CURLOPT_USERAGENT, "$this->uuid/lightenbody-api:v$this->apiVersion");
             curl_setopt($curl, CURLOPT_TIMEOUT, $timeout);
             curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $httpVerb);
