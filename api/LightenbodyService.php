@@ -64,7 +64,8 @@ class NotFoundStudioApiGuidException extends \Exception
 class LightenbodyService
 {
     private $apiVersion = 2;
-    private $apiUrl = "https://studio.lightenbody.com/<uuid>/api/v<version>/public";
+    private $baseUrl = 'https://studio.lightenbody.com';
+    private $apiUrl = 'https://studio.lightenbody.com/<uuid>/api/v<version>/public';
     private $apiGuid;
     private $apiKey;
     private $apiSource;
@@ -85,6 +86,11 @@ class LightenbodyService
         if(defined('LIGHTENBODY_API_URL'))
         {
             $this->apiUrl = constant('LIGHTENBODY_API_URL');
+        }
+
+        if(defined('LIGHTENBODY_BASE_URL'))
+        {
+            $this->baseUrl = constant('LIGHTENBODY_BASE_URL');
         }
 
         // construct the api url
@@ -217,6 +223,14 @@ class LightenbodyService
         }
 
         throw new \RuntimeException('curl extension is not installed!');
+    }
+
+    /**
+     * @return string
+     */
+    public function getBaseUrl()
+    {
+        return $this->baseUrl;
     }
 
     /**

@@ -31,13 +31,13 @@
                                     <?php elseif($scheduleEvent->isCancelled): ?>
                                         <td class="lb-schedule-table-body-booking-cancelled">Anulowane</td>
                                     <?php else: ?>
-                                        <td class="lb-schedule-table-body-booking"><a class="lb-schedule-body-booking-link" href="<?php echo $url; ?>">Zapisz się</a></td>
                                         <?php $parameters = http_build_query([
                                             'referenceIds'              => [$scheduleEvent->referenceId],
                                             '_locale'                   => $locale,
                                             'lightenbody-api-source'    => $apiSource
                                         ]); ?>
-                                        <?php $url = sprintf('https://studio.lightenbody.com/%s/frontoffice,iframe/delegate?%s', $uuid, $parameters); ?>
+                                        <?php $url = sprintf("$baseUrl/%s/frontoffice,iframe/delegate?%s", $uuid, $parameters); ?>
+                                        <td class="lb-schedule-table-body-booking"><a class="lb-schedule-body-booking-link" href="<?php echo $url; ?>">Zapisz się</a></td>
                                     <?php endif; ?>
                                 </tr>
                             <?php endif; ?>
