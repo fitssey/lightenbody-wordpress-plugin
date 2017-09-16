@@ -65,6 +65,7 @@ class LightenbodyService
 {
     private $apiVersion = 2;
     private $apiUrl = "https://studio.lightenbody.com/<uuid>/api/v<version>/public";
+    private $apiGuid;
     private $apiKey;
     private $apiSource;
     private $uuid;
@@ -81,6 +82,11 @@ class LightenbodyService
      */
     public function __construct($uuid, $apiGuid, $apiKey, $apiSource = null)
     {
+        if(defined('LIGHTENBODY_API_URL'))
+        {
+            $this->apiUrl = constant('LIGHTENBODY_API_URL');
+        }
+
         // construct the api url
         $this->apiUrl = str_replace('<uuid>', $uuid, $this->apiUrl);
         $this->apiUrl = str_replace('<version>', $this->apiVersion, $this->apiUrl);
