@@ -14,3 +14,12 @@
 .mfp-iframe-holder .mfp-content {
     min-height: 550px;
 }
+
+.mfp-iframe-scaler .mfp-close {
+    width: auto;
+}
+
+.mfp-iframe-scaler .mfp-close:focus {
+    outline: none;
+    background-color: transparent;
+}
