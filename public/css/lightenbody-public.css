@@ -10,3 +10,7 @@
 .mfp-content .mfp-iframe-scaler .mfp-close:hover {
     background-color: transparent !important;
 }
+
+.mfp-iframe-holder .mfp-content {
+    min-height: 550px;
+}
