@@ -4,7 +4,7 @@
         <!-- SINGLE DAY HEAD -->
         <?php foreach($schedule as $item): ?>
             <div class="lb-schedule-single-day">
-                <h3 class="lb-schedule-day"><?php echo date_i18n('d F Y', strtotime($item->date)); ?><br><?php echo date_i18n('l', strtotime($item->date)); ?></h3>
+                <h3 class="lb-schedule-day"><?php echo date_i18n('d.m.Y', strtotime($item->date)); ?><br><?php echo date_i18n('l', strtotime($item->date)); ?></h3>
             </div>
         <?php endforeach; ?>
         <!-- end of SINGLE DAY HEAD -->
@@ -17,7 +17,7 @@
                     <!-- SINGLE DAY BODY -->
                     <div class="lb-schedule-single-day">
                         <div class="lb-schedule-day-part-name">
-                            <span class="ng-binding">Poranek</span>
+                            <span class="ng-binding"><?php echo $options['morning_translation'] ?></span>
                         </div>
                         <?php if(isset($item->scheduleEvents->morning)): ?>
                             <?php foreach($item->scheduleEvents->morning as $scheduleEvent): ?>
@@ -26,9 +26,15 @@
                                     <div class="lb-schedule-single-class" id="<?php echo $scheduleEvent->referenceId; ?>">
                                         <p class="lb-schedule-table-body-time"><?php echo $scheduleEvent->startTime . ' &ndash; ' . $scheduleEvent->endTime; ?></p>
                                         <p class="lb-schedule-table-body-class"><?php echo $scheduleEvent->scheduleMeta->classService->name->{"$locale"}->value; ?></p>
-                                        <p class="lb-schedule-table-body-member"><?php echo $scheduleEvent->member->user->fullName; ?></p>
-                                        <p class="lb-schedule-table-body-level"><?php echo $scheduleEvent->scheduleMeta->classService->experienceLevel->name->{"$locale"}->value; ?></p>
-                                        <p class="lb-schedule-table-body-location"><?php echo $scheduleEvent->room->location->name->{"$locale"}->value; ?></p>
+                                        <?php if($options['show_teacher']): ?>
+                                            <p class="lb-schedule-table-body-member"><?php echo $scheduleEvent->member->user->fullName; ?></p>
+                                        <?php endif; ?>
+                                        <?php if($options['show_level']): ?>
+                                            <p class="lb-schedule-table-body-level"><?php echo $scheduleEvent->scheduleMeta->classService->experienceLevel->name->{"$locale"}->value; ?></p>
+                                        <?php endif; ?>
+                                        <?php if($options['show_location']): ?>
+                                            <p class="lb-schedule-table-body-location"><?php echo $scheduleEvent->room->location->name->{"$locale"}->value; ?></p>
+                                        <?php endif; ?>
                                         <?php if($scheduleEvent->hasStarted): ?>
                                             <p class="lb-schedule-table-body-booking-past"><?php echo $options['class_ended_translation']; ?></p>
                                         <?php elseif($scheduleEvent->isCancelled): ?>
@@ -60,7 +66,7 @@
                     <!-- SINGLE DAY BODY -->
                     <div class="lb-schedule-single-day">
                         <div class="lb-schedule-day-part-name">
-                            <span class="ng-binding">Popołudnie</span>
+                            <span class="ng-binding"><?php echo $options['afternoon_translation'] ?></span>
                         </div>
                         <?php if(isset($item->scheduleEvents->afternoon)): ?>
                             <?php foreach($item->scheduleEvents->afternoon as $scheduleEvent): ?>
@@ -69,9 +75,15 @@
                                     <div class="lb-schedule-single-class" id="<?php echo $scheduleEvent->referenceId; ?>">
                                         <p class="lb-schedule-table-body-time"><?php echo $scheduleEvent->startTime . ' &ndash; ' . $scheduleEvent->endTime; ?></p>
                                         <p class="lb-schedule-table-body-class"><?php echo $scheduleEvent->scheduleMeta->classService->name->{"$locale"}->value; ?></p>
-                                        <p class="lb-schedule-table-body-member"><?php echo $scheduleEvent->member->user->fullName; ?></p>
-                                        <p class="lb-schedule-table-body-level"><?php echo $scheduleEvent->scheduleMeta->classService->experienceLevel->name->{"$locale"}->value; ?></p>
-                                        <p class="lb-schedule-table-body-location"><?php echo $scheduleEvent->room->location->name->{"$locale"}->value; ?></p>
+                                        <?php if($options['show_teacher']): ?>
+                                            <p class="lb-schedule-table-body-member"><?php echo $scheduleEvent->member->user->fullName; ?></p>
+                                        <?php endif; ?>
+                                        <?php if($options['show_level']): ?>
+                                            <p class="lb-schedule-table-body-level"><?php echo $scheduleEvent->scheduleMeta->classService->experienceLevel->name->{"$locale"}->value; ?></p>
+                                        <?php endif; ?>
+                                        <?php if($options['show_location']): ?>
+                                            <p class="lb-schedule-table-body-location"><?php echo $scheduleEvent->room->location->name->{"$locale"}->value; ?></p>
+                                        <?php endif; ?>
                                         <?php if($scheduleEvent->hasStarted): ?>
                                             <p class="lb-schedule-table-body-booking-past"><?php echo $options['class_ended_translation']; ?></p>
                                         <?php elseif($scheduleEvent->isCancelled): ?>
@@ -103,7 +115,7 @@
                     <!-- SINGLE DAY BODY -->
                     <div class="lb-schedule-single-day">
                         <div class="lb-schedule-day-part-name">
-                            <span class="ng-binding">Wieczór</span>
+                            <span class="ng-binding"><?php echo $options['evening_translation'] ?></span>
                         </div>
                         <?php if(isset($item->scheduleEvents->evening)): ?>
                             <?php foreach($item->scheduleEvents->evening as $scheduleEvent): ?>
@@ -112,9 +124,15 @@
                                     <div class="lb-schedule-single-class" id="<?php echo $scheduleEvent->referenceId; ?>">
                                         <p class="lb-schedule-table-body-time"><?php echo $scheduleEvent->startTime . ' &ndash; ' . $scheduleEvent->endTime; ?></p>
                                         <p class="lb-schedule-table-body-class"><?php echo $scheduleEvent->scheduleMeta->classService->name->{"$locale"}->value; ?></p>
-                                        <p class="lb-schedule-table-body-member"><?php echo $scheduleEvent->member->user->fullName; ?></p>
-                                        <p class="lb-schedule-table-body-level"><?php echo $scheduleEvent->scheduleMeta->classService->experienceLevel->name->{"$locale"}->value; ?></p>
-                                        <p class="lb-schedule-table-body-location"><?php echo $scheduleEvent->room->location->name->{"$locale"}->value; ?></p>
+                                        <?php if($options['show_teacher']): ?>
+                                            <p class="lb-schedule-table-body-member"><?php echo $scheduleEvent->member->user->fullName; ?></p>
+                                        <?php endif; ?>
+                                        <?php if($options['show_level']): ?>
+                                            <p class="lb-schedule-table-body-level"><?php echo $scheduleEvent->scheduleMeta->classService->experienceLevel->name->{"$locale"}->value; ?></p>
+                                        <?php endif; ?>
+                                        <?php if($options['show_location']): ?>
+                                            <p class="lb-schedule-table-body-location"><?php echo $scheduleEvent->room->location->name->{"$locale"}->value; ?></p>
+                                        <?php endif; ?>
                                         <?php if($scheduleEvent->hasStarted): ?>
                                             <p class="lb-schedule-table-body-booking-past"><?php echo $options['class_ended_translation']; ?></p>
                                         <?php elseif($scheduleEvent->isCancelled): ?>

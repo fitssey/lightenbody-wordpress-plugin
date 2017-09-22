@@ -13,3 +13,6 @@ $bookNowTranslation = $options['book_now_translation'] ?: 'Book now';
 $classEndedTranslation = $options['class_ended_translation'] ?: 'Class ended';
 $classCancelledTranslation = $options['class_cancelled_translation'] ?: 'Class cancelled';
 $noPublicScheduleTranslation = $options['no_public_schedule_translation'] ?: 'No public schedule.';
+$morningTranslation = $options['morning_translation'] ?: 'Morning';
+$afternoonTranslation = $options['afternoon_translation'] ?: 'Afternoon';
+$eveningTranslation = $options['evening_translation'] ?: 'Evening';

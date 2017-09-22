@@ -8,9 +8,15 @@
                     <tr>
                         <th class="lb-schedule-table-head-time"><?php echo $options['time_translation']; ?></th>
                         <th class="lb-schedule-table-head-class"><?php echo $options['class_translation']; ?></th>
-                        <th class="lb-schedule-table-head-member"><?php echo $options['teacher_translation']; ?></th>
-                        <th class="lb-schedule-table-head-level"><?php echo $options['level_translation']; ?></th>
-                        <th class="lb-schedule-table-head-location"><?php echo $options['location_translation']; ?></th>
+                        <?php if($options['show_teacher']): ?>
+                            <th class="lb-schedule-table-head-member"><?php echo $options['teacher_translation']; ?></th>
+                        <?php endif; ?>
+                        <?php if($options['show_level']): ?>
+                            <th class="lb-schedule-table-head-level"><?php echo $options['level_translation']; ?></th>
+                        <?php endif; ?>
+                        <?php if($options['show_location']): ?>
+                            <th class="lb-schedule-table-head-location"><?php echo $options['location_translation']; ?></th>
+                        <?php endif; ?>
                         <th class="lb-schedule-table-head-booking"></th>
                     </tr>
                     </thead>
@@ -23,9 +29,15 @@
                                 <tr id="<?php echo $scheduleEvent->referenceId; ?>">
                                     <td class="lb-schedule-table-body-time"><?php echo $scheduleEvent->startTime . ' &ndash; ' . $scheduleEvent->endTime; ?></td>
                                     <td class="lb-schedule-table-body-class"><?php echo $scheduleEvent->scheduleMeta->classService->name->{"$locale"}->value; ?></td>
-                                    <td class="lb-schedule-table-body-member"><?php echo $scheduleEvent->member->user->fullName; ?></td>
-                                    <td class="lb-schedule-table-body-level"><?php echo $scheduleEvent->scheduleMeta->classService->experienceLevel->name->{"$locale"}->value; ?></td>
-                                    <td class="lb-schedule-table-body-location"><?php echo $scheduleEvent->room->location->name->{"$locale"}->value; ?></td>
+                                    <?php if($options['show_teacher']): ?>
+                                        <td class="lb-schedule-table-body-member"><?php echo $scheduleEvent->member->user->fullName; ?></td>
+                                    <?php endif; ?>
+                                    <?php if($options['show_level']): ?>
+                                        <td class="lb-schedule-table-body-level"><?php echo $scheduleEvent->scheduleMeta->classService->experienceLevel->name->{"$locale"}->value; ?></td>
+                                    <?php endif; ?>
+                                    <?php if($options['show_location']): ?>
+                                        <td class="lb-schedule-table-body-location"><?php echo $scheduleEvent->room->location->name->{"$locale"}->value; ?></td>
+                                    <?php endif; ?>
                                     <?php if($scheduleEvent->hasStarted): ?>
                                         <td class="lb-schedule-table-body-booking-past"><?php echo $options['class_ended_translation']; ?></td>
                                     <?php elseif($scheduleEvent->isCancelled): ?>

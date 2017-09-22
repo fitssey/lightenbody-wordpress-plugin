@@ -37,62 +37,78 @@ class Lightenbody_Public
 	{
 		require_once __DIR__ . '/../api/LightenbodyService.php';
 
-		// core objects
+		// retrieve options
 		$options = get_option($this->plugin_name);
 
-		$scheduleDisplay = $options['schedule_display'];
-
-		switch($scheduleDisplay)
-		{
-			// Agenda view
-			default:
-			case 0:
-				echo $this->renderAgendaView($shortCode, $options);
-				break;
-			// Calendar view
-			case 1:
-				echo $this->renderCalendarView($shortCode, $options);
-				break;
-		}
-	}
-
-	private function renderAgendaView($shortCode, array $options)
-	{
 		$uuid = $options['uuid'];
 		$apiGuid = $options['api_guid'];
 		$apiKey = $options['api_key'];
 		$apiSource = $options['api_source'];
 		$scheduleDisplay = $options['schedule_display'];
+		$weekDisplay = $options['week_display'];
+
+		switch($weekDisplay)
+		{
+			// from today + 6 days
+			default:
+			case 0:
+				$startDate = (new \DateTime())->format('Y-m-d');
+				$endDate = (new \DateTime('+6 days'))->format('Y-m-d');
+				break;
+			// from Monday till Sunday
+			case 1:
+				$startDate = (new \DateTime('monday this week'))->format('Y-m-d');
+				$endDate = (new \DateTime('sunday this week'))->format('Y-m-d');
+				break;
+		}
 
 		// provide short code default parameters
 		$atts = shortcode_atts(array(
 			'locale'        => get_locale(),
-			'start_date'    => (new \DateTime())->format('Y-m-d'),
-			'end_date'      => (new \DateTime('+6 days'))->format('Y-m-d')
+			'start_date'    => $startDate,
+			'end_date'      => $endDate,
+			'display'       => $scheduleDisplay
 		), $shortCode);
 
+		$scheduleDisplay = $this->getScheduleDisplay($atts['display']);
+
+		// core objects
 		$lightenbodyService = new LightenbodyService($uuid, $apiGuid, $apiKey, $apiSource);
 
-		$result = $lightenbodyService
+		// let's make a call
+		$lightenbodyService
 			->post('/schedule', array(
 				'startDate' => $atts['start_date'],
 				'endDate'   => $atts['end_date'],
-                'view'      => $scheduleDisplay
+				'view'      => $scheduleDisplay
 			))
 		;
 
-		$baseUrl = null;
-		$schedule = null;
 		$responseCode = $lightenbodyService->getResponseCode();
+		$response = $lightenbodyService->getResponse();
+		$locale = $atts['locale'];
+		$schedule = isset($response->schedule) ? $response->schedule : null;
+		$hasMorningSchedule = isset($response->hasMorningSchedule) ? $response->hasMorningSchedule : false;
+		$hasAfternoonSchedule = isset($response->hasAfternoonSchedule) ? $response->hasAfternoonSchedule : false;
+		$hasEveningSchedule = isset($response->hasEveningSchedule) ? $response->hasEveningSchedule : false;
+		$baseUrl = $lightenbodyService->getBaseUrl();
 
 		if(200 === $responseCode)
 		{
-			$locale = $atts['locale'];
-			$schedule = $result->schedule;
-			$baseUrl = $lightenbodyService->getBaseUrl();
+			switch($scheduleDisplay)
+			{
+				default:
+				case	 0:
+					$template = 'views/lightenbody-schedule-agenda-view.php';
+					break;
+				case 1:
+					$template = 'views/lightenbody-schedule-calendar-view.php';
+					break;
+			}
+
 			ob_start();
-			require_once 'views/lightenbody-schedule-agenda-view.php';
-			$output = ob_get_contents();;
+			require_once $template;
+			$output = ob_get_contents();
 			ob_end_clean();
 
 			return $output;
@@ -101,53 +117,11 @@ class Lightenbody_Public
 		return null;
 	}
 
-	private function renderCalendarView($shortCode, array $options)
+	private function getScheduleDisplay($value)
 	{
-		$uuid = $options['uuid'];
-		$apiGuid = $options['api_guid'];
-		$apiKey = $options['api_key'];
-		$apiSource = $options['api_source'];
-        $scheduleDisplay = $options['schedule_display'];
+		if('agenda' === $value) return 0;
+		if('calendar' === $value) return 1;
 
-        // provide short code default parameters
-		$atts = shortcode_atts(array(
-			'locale'        => get_locale(),
-			'start_date'    => (new \DateTime())->format('Y-m-d'),
-			'end_date'      => (new \DateTime('+6 days'))->format('Y-m-d')
-		), $shortCode);
-
-		$lightenbodyService = new LightenbodyService($uuid, $apiGuid, $apiKey, $apiSource);
-
-		$result = $lightenbodyService
-			->post('/schedule', array(
-				'startDate' => $atts['start_date'],
-				'endDate'   => $atts['end_date'],
-                'view'      => $scheduleDisplay
-            ))
-		;
-
-		$baseUrl = null;
-		$schedule = null;
-		$responseCode = $lightenbodyService->getResponseCode();
-
-		if(200 === $responseCode)
-		{
-			$locale = $atts['locale'];
-			$schedule = $result->schedule;
-
-			$hasMorningSchedule = $result->hasMorningSchedule;
-			$hasAfternoonSchedule = $result->hasAfternoonSchedule;
-			$hasEveningSchedule = $result->hasEveningSchedule;
-			$baseUrl = $lightenbodyService->getBaseUrl();
-
-            ob_start();
-			require_once 'views/lightenbody-schedule-calendar-view.php';
-			$output = ob_get_contents();;
-			ob_end_clean();
-
-			return $output;
-		}
-
-		return null;
+		return $value;
 	}
 }

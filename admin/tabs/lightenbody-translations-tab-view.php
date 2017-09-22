@@ -36,7 +36,16 @@
         <br>
         <label for="<?php echo $this->plugin_name; ?>-class_cancelled_translation">Class cancelled</label>
         <input id="<?php echo $this->plugin_name; ?>-class_cancelled_translation" name="<?php echo $this->plugin_name; ?>[class_cancelled_translation]" type="text" value="<?php echo $classCancelledTranslation ?>">
-        <br>
+	    <br>
+	    <label for="<?php echo $this->plugin_name; ?>-morning_translation">Morning</label>
+	    <input id="<?php echo $this->plugin_name; ?>-morning_translation" name="<?php echo $this->plugin_name; ?>[morning_translation]" type="text" value="<?php echo $morningTranslation ?>">
+	    <br>
+	    <label for="<?php echo $this->plugin_name; ?>-afternoon_translation">Afternoon</label>
+	    <input id="<?php echo $this->plugin_name; ?>-afternoon_translation" name="<?php echo $this->plugin_name; ?>[afternoon_translation]" type="text" value="<?php echo $afternoonTranslation ?>">
+	    <br>
+	    <label for="<?php echo $this->plugin_name; ?>-evening_translation">Evening</label>
+	    <input id="<?php echo $this->plugin_name; ?>-evening_translation" name="<?php echo $this->plugin_name; ?>[evening_translation]" type="text" value="<?php echo $eveningTranslation ?>">
+	    <br>
         <br>
 		<?php submit_button('Save', 'primary', 'submit', true); ?>
     </form>
