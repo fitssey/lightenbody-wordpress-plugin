@@ -62,6 +62,7 @@ class Lightenbody_Public
 		$apiGuid = $options['api_guid'];
 		$apiKey = $options['api_key'];
 		$apiSource = $options['api_source'];
+		$scheduleDisplay = $options['schedule_display'];
 
 		// provide short code default parameters
 		$atts = shortcode_atts(array(
@@ -76,6 +77,7 @@ class Lightenbody_Public
 			->post('/schedule', array(
 				'startDate' => $atts['start_date'],
 				'endDate'   => $atts['end_date'],
+                'view'      => $scheduleDisplay
 			))
 		;
 
@@ -105,8 +107,9 @@ class Lightenbody_Public
 		$apiGuid = $options['api_guid'];
 		$apiKey = $options['api_key'];
 		$apiSource = $options['api_source'];
+        $scheduleDisplay = $options['schedule_display'];
 
-		// provide short code default parameters
+        // provide short code default parameters
 		$atts = shortcode_atts(array(
 			'locale'        => get_locale(),
 			'start_date'    => (new \DateTime())->format('Y-m-d'),
@@ -119,7 +122,8 @@ class Lightenbody_Public
 			->post('/schedule', array(
 				'startDate' => $atts['start_date'],
 				'endDate'   => $atts['end_date'],
-			))
+                'view'      => $scheduleDisplay
+            ))
 		;
 
 		$baseUrl = null;
@@ -130,8 +134,13 @@ class Lightenbody_Public
 		{
 			$locale = $atts['locale'];
 			$schedule = $result->schedule;
+
+			$hasMorningSchedule = $result->hasMorningSchedule;
+			$hasAfternoonSchedule = $result->hasAfternoonSchedule;
+			$hasEveningSchedule = $result->hasEveningSchedule;
 			$baseUrl = $lightenbodyService->getBaseUrl();
-			ob_start();
+
+            ob_start();
 			require_once 'views/lightenbody-schedule-calendar-view.php';
 			$output = ob_get_contents();;
 			ob_end_clean();
