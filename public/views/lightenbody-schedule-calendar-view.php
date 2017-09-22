@@ -6,17 +6,17 @@
                 <table class="lb-schedule">
                     <thead class="lb-schedule-table-head">
                     <tr>
-                        <th class="lb-schedule-table-head-time">KALNDAR</th>
-                        <th class="lb-schedule-table-head-class">Klasa</th>
-                        <th class="lb-schedule-table-head-member">Nauczyciel</th>
-                        <th class="lb-schedule-table-head-level">Poziom</th>
-                        <th class="lb-schedule-table-head-location">Lokalizacja</th>
+                        <th class="lb-schedule-table-head-time"><?php echo $options['time_translation']; ?></th>
+                        <th class="lb-schedule-table-head-class"><?php echo $options['class_translation']; ?></th>
+                        <th class="lb-schedule-table-head-member"><?php echo $options['teacher_translation']; ?></th>
+                        <th class="lb-schedule-table-head-level"><?php echo $options['level_translation']; ?></th>
+                        <th class="lb-schedule-table-head-location"><?php echo $options['location_translation']; ?></th>
                         <th class="lb-schedule-table-head-booking"></th>
                     </tr>
                     </thead>
                     <tbody class="lb-schedule-table-body">
                     <?php if(!isset($item->scheduleEvents)): ?>
-                        <tr><td class="lb-schedule-table-body-error-message" colspan="6">Brak zajęć na dziś</td></tr>
+                        <tr><td class="lb-schedule-table-body-error-message" colspan="6"><?php echo $options['no_classes_today_translation']; ?></td></tr>
                     <?php else: ;?>
                         <?php foreach($item->scheduleEvents as $scheduleEvent): ?>
                             <?php if(!$scheduleEvent->isHidden): ?>
@@ -27,9 +27,9 @@
                                     <td class="lb-schedule-table-body-level"><?php echo $scheduleEvent->scheduleMeta->classService->experienceLevel->name->{"$locale"}->value; ?></td>
                                     <td class="lb-schedule-table-body-location"><?php echo $scheduleEvent->room->location->name->{"$locale"}->value; ?></td>
                                     <?php if($scheduleEvent->hasStarted): ?>
-                                        <td class="lb-schedule-table-body-booking-past">Zakończone</td>
+                                        <td class="lb-schedule-table-body-booking-past"><?php echo $options['class_ended_translation']; ?></td>
                                     <?php elseif($scheduleEvent->isCancelled): ?>
-                                        <td class="lb-schedule-table-body-booking-cancelled">Anulowane</td>
+                                        <td class="lb-schedule-table-body-booking-cancelled"><?php echo $options['class_cancelled_translation']; ?></td>
                                     <?php else: ?>
                                         <?php $parameters = http_build_query([
                                             'referenceIds'              => [$scheduleEvent->referenceId],
@@ -37,7 +37,7 @@
                                             'lightenbody-api-source'    => $apiSource
                                         ]); ?>
                                         <?php $url = sprintf("$baseUrl/%s/frontoffice,iframe/delegate?%s", $uuid, $parameters); ?>
-                                        <td class="lb-schedule-table-body-booking"><a class="lb-schedule-body-booking-link" href="<?php echo $url; ?>">Zapisz się</a></td>
+                                        <td class="lb-schedule-table-body-booking"><a class="lb-schedule-body-booking-link" href="<?php echo $url; ?>"><?php echo $options['book_now_translation']; ?></a></td>
                                     <?php endif; ?>
                                 </tr>
                             <?php endif; ?>
@@ -48,7 +48,7 @@
             </div>
         <?php endforeach; ?>
     <?php else: ?>
-        <p class="lb-schedule-error-message">Brak zajęć.</p>
+        <p class="lb-schedule-error-message"><?php echo $options['no_public_schedule_translation']; ?></p>
     <?php endif;?>
 </div>
 
