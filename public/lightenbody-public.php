@@ -7,13 +7,11 @@ class Lightenbody_Public
 {
     private $plugin_name;
     private $version;
-    private $options;
 
     public function __construct($plugin_name, $version)
     {
         $this->plugin_name = $plugin_name;
         $this->version = $version;
-        $this->options = get_option($this->plugin_name);
     }
 
     public function enqueue_styles()
@@ -37,18 +35,15 @@ class Lightenbody_Public
     {
         require_once __DIR__ . '/../api/LightenbodyService.php';
 
-        // retrieve options
-        $options = get_option($this->plugin_name);
-
-        $uuid = $options['uuid'];
-        $apiGuid = $options['api_guid'];
-        $apiKey = $options['api_key'];
-        $apiSource = $options['api_source'];
-        $scheduleDisplay = $options['schedule_display'];
-        $weekDisplay = $options['week_display'];
-        $showTeacher = is_null($options['show_teacher']) ? true : $options['show_teacher'];
-        $showLevel = is_null($options['show_level']) ? true : $options['show_level'];
-        $showLocation = is_null($options['show_location']) ? true : $options['show_location'];
+        $uuid = get_lightenbody_option('uuid');
+        $apiGuid = get_lightenbody_option('api_guid');
+        $apiKey = get_lightenbody_option('api_key');
+        $apiSource = get_lightenbody_option('api_source', 0);
+        $scheduleDisplay = get_lightenbody_option('schedule_display', 0);
+        $weekDisplay = get_lightenbody_option('week_display', 0);
+        $showTeacher = get_lightenbody_option('show_teacher', 1);
+        $showLevel = get_lightenbody_option('show_level', 1);
+        $showLocation = get_lightenbody_option('show_location', 1);
 
         switch($weekDisplay)
         {
@@ -73,7 +68,7 @@ class Lightenbody_Public
             'display'       => $scheduleDisplay
         ), $shortCode);
 
-        $scheduleDisplay = $this->getScheduleDisplay($atts['display']);
+        $scheduleDisplay = $this->parse_schedule_display($atts['display']);
 
         // core objects
         $lightenbodyService = new LightenbodyService($uuid, $apiGuid, $apiKey, $apiSource);
@@ -120,7 +115,7 @@ class Lightenbody_Public
         return null;
     }
 
-    private function getScheduleDisplay($value)
+    private function parse_schedule_display($value)
     {
         if('agenda' === $value) return 0;
         if('calendar' === $value) return 1;

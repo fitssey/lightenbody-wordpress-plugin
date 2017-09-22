@@ -41,7 +41,7 @@ class Lightenbody_Admin
     {
         require_once __DIR__ . '/../api/LightenbodyService.php';
 
-        $tab = $_GET['tab'];
+        $tab = isset($_GET['tab']) ? $_GET['tab'] : 'connection';
         $allowedTabs = array('connection', 'settings', 'translations', 'help');
 
         if(!in_array($tab, $allowedTabs)) $tab = $allowedTabs[0];
@@ -59,7 +59,7 @@ class Lightenbody_Admin
         register_setting($this->plugin_name, $this->plugin_name, function($input) {
             $options = get_option($this->plugin_name);
 
-            switch($input['update'])
+            switch($input['option_tab'])
             {
                 case 'connection':
                     $options['uuid'] = $input['uuid'];
@@ -75,19 +75,19 @@ class Lightenbody_Admin
                     $options['show_location'] = isset($input['show_location']) ? true : false;
                     break;
                 case 'translations':
-                    $options['time_translation'] = $input['time_translation'];
-                    $options['class_translation'] = $input['class_translation'];
-                    $options['teacher_translation'] = $input['teacher_translation'];
-                    $options['level_translation'] = $input['level_translation'];
-                    $options['location_translation'] = $input['location_translation'];
-                    $options['no_classes_today_translation'] = $input['no_classes_today_translation'];
-                    $options['book_now_translation'] = $input['book_now_translation'];
-                    $options['class_ended_translation'] = $input['class_ended_translation'];
-                    $options['class_cancelled_translation'] = $input['class_cancelled_translation'];
-                    $options['no_public_schedule_translation'] = $input['no_public_schedule_translation'];
-                    $options['morning_translation'] = $input['morning_translation'];
-                    $options['afternoon_translation'] = $input['afternoon_translation'];
-                    $options['evening_translation'] = $input['evening_translation'];
+                    $options['trans_time'] = $input['trans_time'];
+                    $options['trans_class'] = $input['trans_class'];
+                    $options['trans_teacher'] = $input['trans_teacher'];
+                    $options['trans_level'] = $input['trans_level'];
+                    $options['trans_location'] = $input['trans_location'];
+                    $options['trans_no_classes_today'] = $input['trans_no_classes_today'];
+                    $options['trans_book_now'] = $input['trans_book_now'];
+                    $options['trans_class_completed'] = $input['trans_class_completed'];
+                    $options['trans_class_cancelled'] = $input['trans_class_cancelled'];
+                    $options['trans_no_public_schedule'] = $input['trans_no_public_schedule'];
+                    $options['trans_morning'] = $input['trans_morning'];
+                    $options['trans_afternoon'] = $input['trans_afternoon'];
+                    $options['trans_evening'] = $input['trans_evening'];
                     break;
             }
 
