@@ -33,7 +33,7 @@ class Lightenbody_Public
 		add_shortcode('lightenbody-schedule', array($this, 'get_lightenbody_schedule'));
 	}
 
-	public function get_lightenbody_schedule($atts)
+	public function get_lightenbody_schedule($shortCode)
 	{
 		require_once __DIR__ . '/../api/LightenbodyService.php';
 
@@ -47,16 +47,16 @@ class Lightenbody_Public
 			// Agenda view
 			default:
 			case 0:
-				echo $this->renderAgendaView($atts, $options);
+				echo $this->renderAgendaView($shortCode, $options);
 				break;
 			// Calendar view
 			case 1:
-				echo $this->renderCalendarView($atts, $options);
+				echo $this->renderCalendarView($shortCode, $options);
 				break;
 		}
 	}
 
-	private function renderAgendaView(array $atts, array $options)
+	private function renderAgendaView($shortCode, array $options)
 	{
 		$uuid = $options['uuid'];
 		$apiGuid = $options['api_guid'];
@@ -68,7 +68,7 @@ class Lightenbody_Public
 			'locale'        => get_locale(),
 			'start_date'    => (new \DateTime())->format('Y-m-d'),
 			'end_date'      => (new \DateTime('+6 days'))->format('Y-m-d')
-		), $atts);
+		), $shortCode);
 
 		$lightenbodyService = new LightenbodyService($uuid, $apiGuid, $apiKey, $apiSource);
 
@@ -99,7 +99,7 @@ class Lightenbody_Public
 		return null;
 	}
 
-	private function renderCalendarView(array $atts, array $options)
+	private function renderCalendarView($shortCode, array $options)
 	{
 		$uuid = $options['uuid'];
 		$apiGuid = $options['api_guid'];
@@ -111,7 +111,7 @@ class Lightenbody_Public
 			'locale'        => get_locale(),
 			'start_date'    => (new \DateTime())->format('Y-m-d'),
 			'end_date'      => (new \DateTime('+6 days'))->format('Y-m-d')
-		), $atts);
+		), $shortCode);
 
 		$lightenbodyService = new LightenbodyService($uuid, $apiGuid, $apiKey, $apiSource);
 
