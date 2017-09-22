@@ -4,7 +4,7 @@
         <!-- SINGLE DAY HEAD -->
         <?php foreach($schedule as $item): ?>
             <div class="lb-schedule-single-day">
-                <h3 class="lb-schedule-day"><?php echo date_i18n('d.m.Y', strtotime($item->date)); ?><br><?php echo date_i18n('l', strtotime($item->date)); ?></h3>
+                <p class="lb-schedule-day"><?php echo date_i18n('d.m.Y', strtotime($item->date)); ?><br><?php echo date_i18n('l', strtotime($item->date)); ?></p>
             </div>
         <?php endforeach; ?>
         <!-- end of SINGLE DAY HEAD -->
