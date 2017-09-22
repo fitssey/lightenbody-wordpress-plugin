@@ -6,27 +6,27 @@
 		settings_fields($this->plugin_name);
 		do_settings_sections($this->plugin_name);
 		?>
-        <input type="hidden" name="<?php echo $this->plugin_name; ?>[update]" value="settings">
+        <input type="hidden" name="<?php echo $this->plugin_name; ?>[option_tab]" value="settings">
         <label for="<?php echo $this->plugin_name; ?>-schedule_display">Schedule display</label>
         <select id="<?php echo $this->plugin_name; ?>-schedule_display" name="<?php echo $this->plugin_name; ?>[schedule_display]">
-            <option value="0" <?php if(0 == $scheduleDisplay): ?>selected<?php endif; ?>>Agenda</option>
-            <option value="1" <?php if(1 == $scheduleDisplay): ?>selected<?php endif; ?>>Calendar</option>
+            <option value="0" <?php if(0 == get_lightenbody_option('schedule_display')): ?>selected<?php endif; ?>>Agenda</option>
+            <option value="1" <?php if(1 == get_lightenbody_option('schedule_display')): ?>selected<?php endif; ?>>Calendar</option>
         </select>
 	    <br>
 	    <label for="<?php echo $this->plugin_name; ?>-week_display">Week display</label>
 	    <select id="<?php echo $this->plugin_name; ?>-week_display" name="<?php echo $this->plugin_name; ?>[week_display]">
-		    <option value="0" <?php if(0 == $weekDisplay): ?>selected<?php endif; ?>>From today + 6 days</option>
-		    <option value="1" <?php if(1 == $weekDisplay): ?>selected<?php endif; ?>>From Monday till Sunday</option>
+		    <option value="0" <?php if(0 == get_lightenbody_option('week_display')): ?>selected<?php endif; ?>>From today + 6 days</option>
+		    <option value="1" <?php if(1 == get_lightenbody_option('week_display')): ?>selected<?php endif; ?>>From Monday till Sunday</option>
 	    </select>
 	    <br>
 	    <label for="<?php echo $this->plugin_name; ?>-show_teacher">Show teacher</label>
-	    <input id="<?php echo $this->plugin_name; ?>-show_teacher" name="<?php echo $this->plugin_name; ?>[show_teacher]" type="checkbox" <?php if($showTeacher): ?>checked<?php endif; ?>>
+	    <input id="<?php echo $this->plugin_name; ?>-show_teacher" name="<?php echo $this->plugin_name; ?>[show_teacher]" type="checkbox" <?php if(get_lightenbody_option('show_teacher', 1)): ?>checked<?php endif; ?>>
 	    <br>
 	    <label for="<?php echo $this->plugin_name; ?>-show_level">Show level</label>
-	    <input id="<?php echo $this->plugin_name; ?>-show_level" name="<?php echo $this->plugin_name; ?>[show_level]" type="checkbox" <?php if($showLevel): ?>checked<?php endif; ?>>
+	    <input id="<?php echo $this->plugin_name; ?>-show_level" name="<?php echo $this->plugin_name; ?>[show_level]" type="checkbox" <?php if(get_lightenbody_option('show_level', 1)): ?>checked<?php endif; ?>>
 	    <br>
 	    <label for="<?php echo $this->plugin_name; ?>-show_location">Show location</label>
-	    <input id="<?php echo $this->plugin_name; ?>-show_location" name="<?php echo $this->plugin_name; ?>[show_location]" type="checkbox" <?php if($showLocation): ?>checked<?php endif; ?>>
+	    <input id="<?php echo $this->plugin_name; ?>-show_location" name="<?php echo $this->plugin_name; ?>[show_location]" type="checkbox" <?php if(get_lightenbody_option('show_location', 1)): ?>checked<?php endif; ?>>
 
 	    <br>
         <br>

@@ -17,7 +17,7 @@
                     <!-- SINGLE DAY BODY -->
                     <div class="lb-schedule-single-day">
                         <div class="lb-schedule-day-part-name">
-                            <span class="ng-binding"><?php echo $options['morning_translation'] ?></span>
+                            <span class="ng-binding"><?php echo get_lightenbody_option('trans_morning', 'Morning'); ?></span>
                         </div>
                         <?php if(isset($item->scheduleEvents->morning)): ?>
                             <?php foreach($item->scheduleEvents->morning as $scheduleEvent): ?>
@@ -26,19 +26,19 @@
                                     <div class="lb-schedule-single-class" id="<?php echo $scheduleEvent->referenceId; ?>">
                                         <p class="lb-schedule-table-body-time"><?php echo $scheduleEvent->startTime . ' &ndash; ' . $scheduleEvent->endTime; ?></p>
                                         <p class="lb-schedule-table-body-class"><?php echo $scheduleEvent->scheduleMeta->classService->name->{"$locale"}->value; ?></p>
-                                        <?php if($showTeacher): ?>
+                                        <?php if(get_lightenbody_option('show_teacher', 1)): ?>
                                             <p class="lb-schedule-table-body-member"><?php echo $scheduleEvent->member->user->fullName; ?></p>
                                         <?php endif; ?>
-                                        <?php if($showLevel): ?>
+                                        <?php if(get_lightenbody_option('show_level', 1)): ?>
                                             <p class="lb-schedule-table-body-level"><?php echo $scheduleEvent->scheduleMeta->classService->experienceLevel->name->{"$locale"}->value; ?></p>
                                         <?php endif; ?>
-                                        <?php if($showLocation): ?>
+                                        <?php if(get_lightenbody_option('show_location', 1)): ?>
                                             <p class="lb-schedule-table-body-location"><?php echo $scheduleEvent->room->location->name->{"$locale"}->value; ?></p>
                                         <?php endif; ?>
                                         <?php if($scheduleEvent->hasStarted): ?>
-                                            <p class="lb-schedule-table-body-booking-past"><?php echo $options['class_ended_translation']; ?></p>
+                                            <p class="lb-schedule-table-body-booking-past"><?php echo get_lightenbody_option('trans_class_completed', 'Completed'); ?></p>
                                         <?php elseif($scheduleEvent->isCancelled): ?>
-                                            <p class="lb-schedule-table-body-booking-cancelled"><?php echo $options['class_cancelled_translation']; ?></p>
+                                            <p class="lb-schedule-table-body-booking-cancelled"><?php echo get_lightenbody_option('trans_class_cancelled', 'Cancelled'); ?></p>
                                         <?php else: ?>
                                             <?php $parameters = http_build_query([
                                                 'referenceIds'              => [$scheduleEvent->referenceId],
@@ -46,7 +46,7 @@
                                                 'lightenbody-api-source'    => $apiSource
                                             ]); ?>
                                             <?php $url = sprintf("$baseUrl/%s/frontoffice,iframe/delegate?%s", $uuid, $parameters); ?>
-                                            <p class="lb-schedule-table-body-booking"><a class="lb-schedule-body-booking-link" href="<?php echo $url; ?>"><?php echo $options['book_now_translation']; ?></a></p>
+                                            <p class="lb-schedule-table-body-booking"><a class="lb-schedule-body-booking-link" href="<?php echo $url; ?>"><?php echo get_lightenbody_option('trans_book_now', 'Book now'); ?></a></p>
                                         <?php endif; ?>
                                     </div>
                                     <!-- end of SINGLE CLASS -->
@@ -66,7 +66,7 @@
                     <!-- SINGLE DAY BODY -->
                     <div class="lb-schedule-single-day">
                         <div class="lb-schedule-day-part-name">
-                            <span class="ng-binding"><?php echo $options['afternoon_translation'] ?></span>
+                            <span class="ng-binding"><?php echo get_lightenbody_option('trans_afternoon', 'Afternoon'); ?></span>
                         </div>
                         <?php if(isset($item->scheduleEvents->afternoon)): ?>
                             <?php foreach($item->scheduleEvents->afternoon as $scheduleEvent): ?>
@@ -75,19 +75,19 @@
                                     <div class="lb-schedule-single-class" id="<?php echo $scheduleEvent->referenceId; ?>">
                                         <p class="lb-schedule-table-body-time"><?php echo $scheduleEvent->startTime . ' &ndash; ' . $scheduleEvent->endTime; ?></p>
                                         <p class="lb-schedule-table-body-class"><?php echo $scheduleEvent->scheduleMeta->classService->name->{"$locale"}->value; ?></p>
-                                        <?php if($showTeacher): ?>
+                                        <?php if(get_lightenbody_option('show_teacher', 1)): ?>
                                             <p class="lb-schedule-table-body-member"><?php echo $scheduleEvent->member->user->fullName; ?></p>
                                         <?php endif; ?>
-                                        <?php if($showLevel): ?>
+                                        <?php if(get_lightenbody_option('show_level', 1)): ?>
                                             <p class="lb-schedule-table-body-level"><?php echo $scheduleEvent->scheduleMeta->classService->experienceLevel->name->{"$locale"}->value; ?></p>
                                         <?php endif; ?>
-                                        <?php if($showLocation): ?>
+                                        <?php if(get_lightenbody_option('show_location', 1)): ?>
                                             <p class="lb-schedule-table-body-location"><?php echo $scheduleEvent->room->location->name->{"$locale"}->value; ?></p>
                                         <?php endif; ?>
                                         <?php if($scheduleEvent->hasStarted): ?>
-                                            <p class="lb-schedule-table-body-booking-past"><?php echo $options['class_ended_translation']; ?></p>
+                                            <p class="lb-schedule-table-body-booking-past"><?php echo get_lightenbody_option('trans_class_completed', 'Completed'); ?></p>
                                         <?php elseif($scheduleEvent->isCancelled): ?>
-                                            <p class="lb-schedule-table-body-booking-cancelled"><?php echo $options['class_cancelled_translation']; ?></p>
+                                            <p class="lb-schedule-table-body-booking-cancelled"><?php echo get_lightenbody_option('trans_class_cancelled', 'Cancelled'); ?></p>
                                         <?php else: ?>
                                             <?php $parameters = http_build_query([
                                                 'referenceIds'              => [$scheduleEvent->referenceId],
@@ -95,7 +95,7 @@
                                                 'lightenbody-api-source'    => $apiSource
                                             ]); ?>
                                             <?php $url = sprintf("$baseUrl/%s/frontoffice,iframe/delegate?%s", $uuid, $parameters); ?>
-                                            <p class="lb-schedule-table-body-booking"><a class="lb-schedule-body-booking-link" href="<?php echo $url; ?>"><?php echo $options['book_now_translation']; ?></a></p>
+                                            <p class="lb-schedule-table-body-booking"><a class="lb-schedule-body-booking-link" href="<?php echo $url; ?>"><?php echo get_lightenbody_option('trans_book_now', 'Book now'); ?></a></p>
                                         <?php endif; ?>
                                     </div>
                                     <!-- end of SINGLE CLASS -->
@@ -115,7 +115,7 @@
                     <!-- SINGLE DAY BODY -->
                     <div class="lb-schedule-single-day">
                         <div class="lb-schedule-day-part-name">
-                            <span class="ng-binding"><?php echo $options['evening_translation'] ?></span>
+                            <span class="ng-binding"><?php echo get_lightenbody_option('trans_evening', 'Evening'); ?></span>
                         </div>
                         <?php if(isset($item->scheduleEvents->evening)): ?>
                             <?php foreach($item->scheduleEvents->evening as $scheduleEvent): ?>
@@ -124,19 +124,19 @@
                                     <div class="lb-schedule-single-class" id="<?php echo $scheduleEvent->referenceId; ?>">
                                         <p class="lb-schedule-table-body-time"><?php echo $scheduleEvent->startTime . ' &ndash; ' . $scheduleEvent->endTime; ?></p>
                                         <p class="lb-schedule-table-body-class"><?php echo $scheduleEvent->scheduleMeta->classService->name->{"$locale"}->value; ?></p>
-                                        <?php if($showTeacher): ?>
+                                        <?php if(get_lightenbody_option('show_teacher', 1)): ?>
                                             <p class="lb-schedule-table-body-member"><?php echo $scheduleEvent->member->user->fullName; ?></p>
                                         <?php endif; ?>
-                                        <?php if($showLevel): ?>
+                                        <?php if(get_lightenbody_option('show_level', 1)): ?>
                                             <p class="lb-schedule-table-body-level"><?php echo $scheduleEvent->scheduleMeta->classService->experienceLevel->name->{"$locale"}->value; ?></p>
                                         <?php endif; ?>
-                                        <?php if($showLocation): ?>
+                                        <?php if(get_lightenbody_option('show_location', 1)): ?>
                                             <p class="lb-schedule-table-body-location"><?php echo $scheduleEvent->room->location->name->{"$locale"}->value; ?></p>
                                         <?php endif; ?>
                                         <?php if($scheduleEvent->hasStarted): ?>
-                                            <p class="lb-schedule-table-body-booking-past"><?php echo $options['class_ended_translation']; ?></p>
+                                            <p class="lb-schedule-table-body-booking-past"><?php echo get_lightenbody_option('trans_class_completed', 'Completed'); ?></p>
                                         <?php elseif($scheduleEvent->isCancelled): ?>
-                                            <p class="lb-schedule-table-body-booking-cancelled"><?php echo $options['class_cancelled_translation']; ?></p>
+                                            <p class="lb-schedule-table-body-booking-cancelled"><?php echo get_lightenbody_option('trans_class_cancelled', 'Cancelled'); ?></p>
                                         <?php else: ?>
                                             <?php $parameters = http_build_query([
                                                 'referenceIds'              => [$scheduleEvent->referenceId],
@@ -144,7 +144,7 @@
                                                 'lightenbody-api-source'    => $apiSource
                                             ]); ?>
                                             <?php $url = sprintf("$baseUrl/%s/frontoffice,iframe/delegate?%s", $uuid, $parameters); ?>
-                                            <p class="lb-schedule-table-body-booking"><a class="lb-schedule-body-booking-link" href="<?php echo $url; ?>"><?php echo $options['book_now_translation']; ?></a></p>
+                                            <p class="lb-schedule-table-body-booking"><a class="lb-schedule-body-booking-link" href="<?php echo $url; ?>"><?php echo get_lightenbody_option('trans_book_now', 'Book now'); ?></a></p>
                                         <?php endif; ?>
                                     </div>
                                     <!-- end of SINGLE CLASS -->

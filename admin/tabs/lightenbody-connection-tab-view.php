@@ -6,7 +6,7 @@
 		settings_fields($this->plugin_name);
 		do_settings_sections($this->plugin_name);
 		?>
-        <input type="hidden" name="<?php echo $this->plugin_name; ?>[update]" value="connection">
+        <input type="hidden" name="<?php echo $this->plugin_name; ?>[option_tab]" value="connection">
         <label for="<?php echo $this->plugin_name; ?>-uuid">Your studio uuid</label>
         <input id="<?php echo $this->plugin_name; ?>-uuid" name="<?php echo $this->plugin_name; ?>[uuid]" type="text" value="<?php echo $uuid ?>">
         <br>

@@ -16,6 +16,13 @@
 // If this file is called directly, abort.
 if (!defined('WPINC')) die;
 
+function get_lightenbody_option($key, $default = null)
+{
+    $options = get_option('lightenbody');
+
+    return isset($options[$key]) ? $options[$key] : $default;
+}
+
 function activate_lightenbody()
 {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/lightenbody-activator.php';

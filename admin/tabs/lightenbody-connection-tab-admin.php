@@ -1,12 +1,9 @@
 <?php
 
-// grab all options
-$options = get_option($this->plugin_name);
-
-$uuid = $options['uuid'];
-$apiGuid = $options['api_guid'];
-$apiKey = $options['api_key'];
-$apiSource = $options['api_source'];
+$uuid = get_lightenbody_option('uuid');
+$apiGuid = get_lightenbody_option('api_guid');
+$apiKey = get_lightenbody_option('api_key');
+$apiSource = get_lightenbody_option('api_source');
 
 $lightenbodyService = new LightenbodyService($uuid, $apiGuid, $apiKey, $apiSource);
 
