@@ -59,37 +59,37 @@ class Lightenbody_Admin
         register_setting($this->plugin_name, $this->plugin_name, function($input) {
             $options = get_option($this->plugin_name);
 
-            if(isset($input['uuid'])) $options['uuid'] = $input['uuid'];
-            if(isset($input['api_guid'])) $options['api_guid'] = $input['api_guid'];
-            if(isset($input['api_key'])) $options['api_key'] = $input['api_key'];
-            if(isset($input['api_source'])) $options['api_source'] = $input['api_source'];
-
-            if(isset($input['schedule_display'])) $options['schedule_display'] = $input['schedule_display'];
-            if(isset($input['week_display'])) $options['week_display'] = $input['week_display'];
-
-            if(isset($input['schedule_display']))
+            switch($input['update'])
             {
-                $options['show_teacher'] = isset($input['show_teacher']) ? true : false;
-                $options['show_level'] = isset($input['show_level']) ? true : false;
-                $options['show_location'] = isset($input['show_location']) ? true : false;
+                case 'connection':
+                    $options['uuid'] = $input['uuid'];
+                    $options['api_guid'] = $input['api_guid'];
+                    $options['api_key'] = $input['api_key'];
+                    $options['api_source'] = $input['api_source'];
+                    break;
+                case 'settings':
+                    $options['schedule_display'] = $input['schedule_display'];
+                    $options['week_display'] = $input['week_display'];
+                    $options['show_teacher'] = isset($input['show_teacher']) ? true : false;
+                    $options['show_level'] = isset($input['show_level']) ? true : false;
+                    $options['show_location'] = isset($input['show_location']) ? true : false;
+                    break;
+                case 'translations':
+                    $options['time_translation'] = $input['time_translation'];
+                    $options['class_translation'] = $input['class_translation'];
+                    $options['teacher_translation'] = $input['teacher_translation'];
+                    $options['level_translation'] = $input['level_translation'];
+                    $options['location_translation'] = $input['location_translation'];
+                    $options['no_classes_today_translation'] = $input['no_classes_today_translation'];
+                    $options['book_now_translation'] = $input['book_now_translation'];
+                    $options['class_ended_translation'] = $input['class_ended_translation'];
+                    $options['class_cancelled_translation'] = $input['class_cancelled_translation'];
+                    $options['no_public_schedule_translation'] = $input['no_public_schedule_translation'];
+                    $options['morning_translation'] = $input['morning_translation'];
+                    $options['afternoon_translation'] = $input['afternoon_translation'];
+                    $options['evening_translation'] = $input['evening_translation'];
+                    break;
             }
-
-            if(isset($input['time_translation'])) $options['time_translation'] = $input['time_translation'];
-            if(isset($input['class_translation'])) $options['class_translation'] = $input['class_translation'];
-            if(isset($input['teacher_translation'])) $options['teacher_translation'] = $input['teacher_translation'];
-            if(isset($input['level_translation'])) $options['level_translation'] = $input['level_translation'];
-            if(isset($input['location_translation'])) $options['location_translation'] = $input['location_translation'];
-            if(isset($input['no_classes_today_translation'])) $options['no_classes_today_translation'] = $input['no_classes_today_translation'];
-            if(isset($input['book_now_translation'])) $options['book_now_translation'] = $input['book_now_translation'];
-            if(isset($input['class_ended_translation'])) $options['class_ended_translation'] = $input['class_ended_translation'];
-            if(isset($input['class_cancelled_translation'])) $options['class_cancelled_translation'] = $input['class_cancelled_translation'];
-            if(isset($input['no_public_schedule_translation'])) $options['no_public_schedule_translation'] = $input['no_public_schedule_translation'];
-            if(isset($input['morning_translation'])) $options['morning_translation'] = $input['morning_translation'];
-            if(isset($input['afternoon_translation'])) $options['afternoon_translation'] = $input['afternoon_translation'];
-            if(isset($input['evening_translation'])) $options['evening_translation'] = $input['evening_translation'];
-
-            //var_dump($options);
-            //die;
 
             return $options;
         });

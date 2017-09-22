@@ -26,13 +26,13 @@
                                     <div class="lb-schedule-single-class" id="<?php echo $scheduleEvent->referenceId; ?>">
                                         <p class="lb-schedule-table-body-time"><?php echo $scheduleEvent->startTime . ' &ndash; ' . $scheduleEvent->endTime; ?></p>
                                         <p class="lb-schedule-table-body-class"><?php echo $scheduleEvent->scheduleMeta->classService->name->{"$locale"}->value; ?></p>
-                                        <?php if($options['show_teacher']): ?>
+                                        <?php if($showTeacher): ?>
                                             <p class="lb-schedule-table-body-member"><?php echo $scheduleEvent->member->user->fullName; ?></p>
                                         <?php endif; ?>
-                                        <?php if($options['show_level']): ?>
+                                        <?php if($showLevel): ?>
                                             <p class="lb-schedule-table-body-level"><?php echo $scheduleEvent->scheduleMeta->classService->experienceLevel->name->{"$locale"}->value; ?></p>
                                         <?php endif; ?>
-                                        <?php if($options['show_location']): ?>
+                                        <?php if($showLocation): ?>
                                             <p class="lb-schedule-table-body-location"><?php echo $scheduleEvent->room->location->name->{"$locale"}->value; ?></p>
                                         <?php endif; ?>
                                         <?php if($scheduleEvent->hasStarted): ?>
@@ -75,13 +75,13 @@
                                     <div class="lb-schedule-single-class" id="<?php echo $scheduleEvent->referenceId; ?>">
                                         <p class="lb-schedule-table-body-time"><?php echo $scheduleEvent->startTime . ' &ndash; ' . $scheduleEvent->endTime; ?></p>
                                         <p class="lb-schedule-table-body-class"><?php echo $scheduleEvent->scheduleMeta->classService->name->{"$locale"}->value; ?></p>
-                                        <?php if($options['show_teacher']): ?>
+                                        <?php if($showTeacher): ?>
                                             <p class="lb-schedule-table-body-member"><?php echo $scheduleEvent->member->user->fullName; ?></p>
                                         <?php endif; ?>
-                                        <?php if($options['show_level']): ?>
+                                        <?php if($showLevel): ?>
                                             <p class="lb-schedule-table-body-level"><?php echo $scheduleEvent->scheduleMeta->classService->experienceLevel->name->{"$locale"}->value; ?></p>
                                         <?php endif; ?>
-                                        <?php if($options['show_location']): ?>
+                                        <?php if($showLocation): ?>
                                             <p class="lb-schedule-table-body-location"><?php echo $scheduleEvent->room->location->name->{"$locale"}->value; ?></p>
                                         <?php endif; ?>
                                         <?php if($scheduleEvent->hasStarted): ?>
@@ -124,13 +124,13 @@
                                     <div class="lb-schedule-single-class" id="<?php echo $scheduleEvent->referenceId; ?>">
                                         <p class="lb-schedule-table-body-time"><?php echo $scheduleEvent->startTime . ' &ndash; ' . $scheduleEvent->endTime; ?></p>
                                         <p class="lb-schedule-table-body-class"><?php echo $scheduleEvent->scheduleMeta->classService->name->{"$locale"}->value; ?></p>
-                                        <?php if($options['show_teacher']): ?>
+                                        <?php if($showTeacher): ?>
                                             <p class="lb-schedule-table-body-member"><?php echo $scheduleEvent->member->user->fullName; ?></p>
                                         <?php endif; ?>
-                                        <?php if($options['show_level']): ?>
+                                        <?php if($showLevel): ?>
                                             <p class="lb-schedule-table-body-level"><?php echo $scheduleEvent->scheduleMeta->classService->experienceLevel->name->{"$locale"}->value; ?></p>
                                         <?php endif; ?>
-                                        <?php if($options['show_location']): ?>
+                                        <?php if($showLocation): ?>
                                             <p class="lb-schedule-table-body-location"><?php echo $scheduleEvent->room->location->name->{"$locale"}->value; ?></p>
                                         <?php endif; ?>
                                         <?php if($scheduleEvent->hasStarted): ?>

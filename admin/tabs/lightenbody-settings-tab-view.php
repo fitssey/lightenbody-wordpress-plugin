@@ -6,7 +6,7 @@
 		settings_fields($this->plugin_name);
 		do_settings_sections($this->plugin_name);
 		?>
-
+        <input type="hidden" name="<?php echo $this->plugin_name; ?>[update]" value="settings">
         <label for="<?php echo $this->plugin_name; ?>-schedule_display">Schedule display</label>
         <select id="<?php echo $this->plugin_name; ?>-schedule_display" name="<?php echo $this->plugin_name; ?>[schedule_display]">
             <option value="0" <?php if(0 == $scheduleDisplay): ?>selected<?php endif; ?>>Agenda</option>

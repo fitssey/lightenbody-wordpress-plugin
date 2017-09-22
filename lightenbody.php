@@ -4,8 +4,8 @@
  * @wordpress-plugin
  * Plugin Name:       lightenbody&trade;
  * Plugin URI:        http://lightenbody.com
- * Description:       [provide description]
- * Version:           3.0.0
+ * Description:       This plugin connects with lightenbody's api and enables you to display the schedule.
+ * Version:           2.2.2
  * Author:            lightenbody
  * Author URI:        http://lightenbody.com
  * License:           GPL-2.0+

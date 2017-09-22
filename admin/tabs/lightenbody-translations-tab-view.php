@@ -6,6 +6,7 @@
 		settings_fields($this->plugin_name);
 		do_settings_sections($this->plugin_name);
 		?>
+        <input type="hidden" name="<?php echo $this->plugin_name; ?>[update]" value="translations">
 
         <label for="<?php echo $this->plugin_name; ?>-time_translation">Time</label>
         <input id="<?php echo $this->plugin_name; ?>-time_translation" name="<?php echo $this->plugin_name; ?>[time_translation]" type="text" value="<?php echo $timeTranslation ?>">
