@@ -70,6 +70,7 @@ class LightenbodyService
     private $apiKey;
     private $apiSource;
     private $uuid;
+    private $response;
     private $responseCode;
 
     /**
@@ -210,8 +211,7 @@ class LightenbodyService
             $result = curl_exec($curl);
             $info = curl_getinfo($curl);
 
-            // assign the response code
-            $this->setResponseCode($info['http_code']);
+
 
             // if error found, throw the exception
             if($error = curl_error($curl))
@@ -219,7 +219,9 @@ class LightenbodyService
                 throw new \Exception($error);
             }
 
-            return json_decode($result) ?: $result;
+	        $this->setResponse(json_decode($result) ?: $result);
+	        $this->setResponseCode($info['http_code']);
+            return $this;
         }
 
         throw new \RuntimeException('curl extension is not installed!');
@@ -264,6 +266,24 @@ class LightenbodyService
     {
         return $this->uuid;
     }
+
+	/**
+	 * @return mixed
+	 */
+	public function getResponse()
+	{
+		return $this->response;
+	}
+
+	/**
+	 * @param $response
+	 * @return $this
+	 */
+	private function setResponse($response)
+	{
+		$this->response = $response;
+		return $this;
+	}
 
     /**
      * @return integer
