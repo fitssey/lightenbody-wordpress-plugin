@@ -70,11 +70,13 @@
 .lb-schedule-calendar-wrapper .lb-schedule .lb-schedule-afternoon-wrapper .lb-schedule-single-day .lb-schedule-single-class .lb-schedule-table-body-booking a,
 .lb-schedule-calendar-wrapper .lb-schedule .lb-schedule-evening-wrapper .lb-schedule-single-day .lb-schedule-single-class .lb-schedule-table-body-booking a {
     box-shadow: none;
+    font-size: 12px;
 }
 .lb-schedule-calendar-wrapper .lb-schedule .lb-schedule-morning-wrapper .lb-schedule-single-day .lb-schedule-single-class p,
 .lb-schedule-calendar-wrapper .lb-schedule .lb-schedule-afternoon-wrapper .lb-schedule-single-day .lb-schedule-single-class p,
 .lb-schedule-calendar-wrapper .lb-schedule .lb-schedule-evening-wrapper .lb-schedule-single-day .lb-schedule-single-class p {
     margin-bottom: 10px;
+    font-size: 11px;
 }
 .lb-schedule-calendar-wrapper .lb-schedule .lb-schedule-morning-wrapper .lb-schedule-single-day .lb-schedule-single-class:not(:last-of-type),
 .lb-schedule-calendar-wrapper .lb-schedule .lb-schedule-afternoon-wrapper .lb-schedule-single-day .lb-schedule-single-class:not(:last-of-type),
