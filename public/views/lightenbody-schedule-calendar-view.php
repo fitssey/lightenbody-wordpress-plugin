@@ -16,7 +16,7 @@
                 <?php foreach($schedule as $item): ?>
                     <!-- SINGLE DAY BODY -->
                     <div class="lb-schedule-single-day">
-                        <?php if($item->scheduleEvents->morning): ?>
+                        <?php if(isset($item->scheduleEvents->morning)): ?>
                             <?php foreach($item->scheduleEvents->morning as $scheduleEvent): ?>
                                 <?php if(!$scheduleEvent->isHidden): ?>
                                     <!-- SINGLE CLASS -->
@@ -56,7 +56,7 @@
                 <?php foreach($schedule as $item): ?>
                     <!-- SINGLE DAY BODY -->
                     <div class="lb-schedule-single-day">
-                        <?php if($item->scheduleEvents->afternoon): ?>
+                        <?php if(isset($item->scheduleEvents->afternoon)): ?>
                             <?php foreach($item->scheduleEvents->afternoon as $scheduleEvent): ?>
                                 <?php if(!$scheduleEvent->isHidden): ?>
                                     <!-- SINGLE CLASS -->
@@ -96,7 +96,7 @@
                 <?php foreach($schedule as $item): ?>
                     <!-- SINGLE DAY BODY -->
                     <div class="lb-schedule-single-day">
-                        <?php if($item->scheduleEvents->evening): ?>
+                        <?php if(isset($item->scheduleEvents->evening)): ?>
                             <?php foreach($item->scheduleEvents->evening as $scheduleEvent): ?>
                                 <?php if(!$scheduleEvent->isHidden): ?>
                                     <!-- SINGLE CLASS -->
