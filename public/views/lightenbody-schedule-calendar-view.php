@@ -16,6 +16,9 @@
                 <?php foreach($schedule as $item): ?>
                     <!-- SINGLE DAY BODY -->
                     <div class="lb-schedule-single-day">
+                        <div class="lb-schedule-day-part-name">
+                            <span class="ng-binding">Poranek</span>
+                        </div>
                         <?php if(isset($item->scheduleEvents->morning)): ?>
                             <?php foreach($item->scheduleEvents->morning as $scheduleEvent): ?>
                                 <?php if(!$scheduleEvent->isHidden): ?>
@@ -56,6 +59,9 @@
                 <?php foreach($schedule as $item): ?>
                     <!-- SINGLE DAY BODY -->
                     <div class="lb-schedule-single-day">
+                        <div class="lb-schedule-day-part-name">
+                            <span class="ng-binding">Popołudnie</span>
+                        </div>
                         <?php if(isset($item->scheduleEvents->afternoon)): ?>
                             <?php foreach($item->scheduleEvents->afternoon as $scheduleEvent): ?>
                                 <?php if(!$scheduleEvent->isHidden): ?>
@@ -96,6 +102,9 @@
                 <?php foreach($schedule as $item): ?>
                     <!-- SINGLE DAY BODY -->
                     <div class="lb-schedule-single-day">
+                        <div class="lb-schedule-day-part-name">
+                            <span class="ng-binding">Wieczór</span>
+                        </div>
                         <?php if(isset($item->scheduleEvents->evening)): ?>
                             <?php foreach($item->scheduleEvents->evening as $scheduleEvent): ?>
                                 <?php if(!$scheduleEvent->isHidden): ?>
