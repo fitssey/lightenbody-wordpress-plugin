@@ -57,7 +57,7 @@ class Lightenbody_Admin
     public function settings_update()
     {
         register_setting($this->plugin_name, $this->plugin_name, function($input) {
-            $options = get_option($this->plugin_name);
+            $options = !is_array(get_option($this->plugin_name)) ? array() : get_option($this->plugin_name);
 
             switch($input['option_tab'])
             {
