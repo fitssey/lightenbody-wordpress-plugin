@@ -13,12 +13,12 @@
         <?php if($hasMorningSchedule): ?>
             <!-- MORNING -->
             <div class="lb-schedule-morning-wrapper">
+                <div class="lb-schedule-day-part-name">
+                    <span class="ng-binding"><?php echo get_lightenbody_option('trans_morning', 'Morning'); ?></span>
+                </div>
                 <?php foreach($schedule as $item): ?>
                     <!-- SINGLE DAY BODY -->
                     <div class="lb-schedule-single-day">
-                        <div class="lb-schedule-day-part-name">
-                            <span class="ng-binding"><?php echo get_lightenbody_option('trans_morning', 'Morning'); ?></span>
-                        </div>
                         <?php if(isset($item->scheduleEvents->morning)): ?>
                             <?php foreach($item->scheduleEvents->morning as $scheduleEvent): ?>
                                 <?php if(!$scheduleEvent->isHidden): ?>
@@ -62,12 +62,12 @@
         <?php if($hasAfternoonSchedule): ?>
             <!-- AFTERNOON -->
             <div class="lb-schedule-afternoon-wrapper">
+                <div class="lb-schedule-day-part-name">
+                    <span class="ng-binding"><?php echo get_lightenbody_option('trans_afternoon', 'Afternoon'); ?></span>
+                </div>
                 <?php foreach($schedule as $item): ?>
                     <!-- SINGLE DAY BODY -->
                     <div class="lb-schedule-single-day">
-                        <div class="lb-schedule-day-part-name">
-                            <span class="ng-binding"><?php echo get_lightenbody_option('trans_afternoon', 'Afternoon'); ?></span>
-                        </div>
                         <?php if(isset($item->scheduleEvents->afternoon)): ?>
                             <?php foreach($item->scheduleEvents->afternoon as $scheduleEvent): ?>
                                 <?php if(!$scheduleEvent->isHidden): ?>
@@ -111,12 +111,12 @@
         <?php if($hasEveningSchedule): ?>
             <!-- EVENING -->
             <div class="lb-schedule-evening-wrapper">
+                <div class="lb-schedule-day-part-name">
+                    <span class="ng-binding"><?php echo get_lightenbody_option('trans_evening', 'Evening'); ?></span>
+                </div>
                 <?php foreach($schedule as $item): ?>
                     <!-- SINGLE DAY BODY -->
                     <div class="lb-schedule-single-day">
-                        <div class="lb-schedule-day-part-name">
-                            <span class="ng-binding"><?php echo get_lightenbody_option('trans_evening', 'Evening'); ?></span>
-                        </div>
                         <?php if(isset($item->scheduleEvents->evening)): ?>
                             <?php foreach($item->scheduleEvents->evening as $scheduleEvent): ?>
                                 <?php if(!$scheduleEvent->isHidden): ?>
