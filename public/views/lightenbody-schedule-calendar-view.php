@@ -13,17 +13,19 @@
         <?php if($hasMorningSchedule): ?>
             <!-- MORNING -->
             <div class="lb-schedule-morning-wrapper">
+                <div class="lb-schedule-day-part-name">
+                    <span class="ng-binding"><?php echo get_lightenbody_option('trans_morning', 'Morning'); ?></span>
+                </div>
                 <?php foreach($schedule as $item): ?>
                     <!-- SINGLE DAY BODY -->
                     <div class="lb-schedule-single-day">
-                        <div class="lb-schedule-day-part-name">
-                            <span class="ng-binding"><?php echo get_lightenbody_option('trans_morning', 'Morning'); ?></span>
-                        </div>
                         <?php if(isset($item->scheduleEvents->morning)): ?>
                             <?php foreach($item->scheduleEvents->morning as $scheduleEvent): ?>
                                 <?php if(!$scheduleEvent->isHidden): ?>
                                     <!-- SINGLE CLASS -->
-                                    <div class="lb-schedule-single-class" id="<?php echo $scheduleEvent->referenceId; ?>">
+                                    <div class="lb-schedule-single-class <?php if($scheduleEvent->color): ?>lb-schedule-single-class-highlighted<?php endif; ?>" id="<?php echo $scheduleEvent->referenceId; ?>" <?php if($scheduleEvent->color): ?>style="border-color: <?php echo $scheduleEvent->color; ?>"<?php endif; ?>>
+                                        <div class="lb-schedule-single-class-highlight-background" style="background-color: <?php echo $scheduleEvent->color; ?>"></div>
+                                        <div class="lb-schedule-single-class-highlight" style="border-color: <?php echo $scheduleEvent->color; ?>"></div>
                                         <p class="lb-schedule-table-body-time"><?php echo $scheduleEvent->startTime . ' &ndash; ' . $scheduleEvent->endTime; ?></p>
                                         <p class="lb-schedule-table-body-class"><?php echo $scheduleEvent->scheduleMeta->classService->name->{"$locale"}->value; ?></p>
                                         <?php if(get_lightenbody_option('show_teacher', 1)): ?>
@@ -46,7 +48,7 @@
                                                 'lightenbody-api-source'    => $apiSource
                                             ]); ?>
                                             <?php $url = sprintf("$baseUrl/%s/frontoffice,iframe/delegate?%s", $uuid, $parameters); ?>
-                                            <p class="lb-schedule-table-body-booking"><a class="lb-schedule-body-booking-link" href="<?php echo $url; ?>"><?php echo get_lightenbody_option('trans_book_now', 'Book now'); ?></a></p>
+                                            <p class="lb-schedule-table-body-booking"><a class="lb-schedule-body-booking-link" <?php if($scheduleEvent->color): ?>style="background-color: <?php echo $scheduleEvent->color; ?>; border-color: <?php echo $scheduleEvent->color; ?>"<?php endif; ?> href="<?php echo $url; ?>"><?php echo get_lightenbody_option('trans_book_now', 'Book now'); ?></a></p>
                                         <?php endif; ?>
                                     </div>
                                     <!-- end of SINGLE CLASS -->
@@ -62,17 +64,19 @@
         <?php if($hasAfternoonSchedule): ?>
             <!-- AFTERNOON -->
             <div class="lb-schedule-afternoon-wrapper">
+                <div class="lb-schedule-day-part-name">
+                    <span class="ng-binding"><?php echo get_lightenbody_option('trans_afternoon', 'Afternoon'); ?></span>
+                </div>
                 <?php foreach($schedule as $item): ?>
                     <!-- SINGLE DAY BODY -->
                     <div class="lb-schedule-single-day">
-                        <div class="lb-schedule-day-part-name">
-                            <span class="ng-binding"><?php echo get_lightenbody_option('trans_afternoon', 'Afternoon'); ?></span>
-                        </div>
                         <?php if(isset($item->scheduleEvents->afternoon)): ?>
                             <?php foreach($item->scheduleEvents->afternoon as $scheduleEvent): ?>
                                 <?php if(!$scheduleEvent->isHidden): ?>
                                     <!-- SINGLE CLASS -->
-                                    <div class="lb-schedule-single-class" id="<?php echo $scheduleEvent->referenceId; ?>">
+                                    <div class="lb-schedule-single-class <?php if($scheduleEvent->color): ?>lb-schedule-single-class-highlighted<?php endif; ?>" id="<?php echo $scheduleEvent->referenceId; ?>" <?php if($scheduleEvent->color): ?>style="border-color: <?php echo $scheduleEvent->color; ?>"<?php endif; ?>>
+                                        <div class="lb-schedule-single-class-highlight-background" style="background-color: <?php echo $scheduleEvent->color; ?>"></div>
+                                        <div class="lb-schedule-single-class-highlight" style="border-color: <?php echo $scheduleEvent->color; ?>"></div>
                                         <p class="lb-schedule-table-body-time"><?php echo $scheduleEvent->startTime . ' &ndash; ' . $scheduleEvent->endTime; ?></p>
                                         <p class="lb-schedule-table-body-class"><?php echo $scheduleEvent->scheduleMeta->classService->name->{"$locale"}->value; ?></p>
                                         <?php if(get_lightenbody_option('show_teacher', 1)): ?>
@@ -95,7 +99,7 @@
                                                 'lightenbody-api-source'    => $apiSource
                                             ]); ?>
                                             <?php $url = sprintf("$baseUrl/%s/frontoffice,iframe/delegate?%s", $uuid, $parameters); ?>
-                                            <p class="lb-schedule-table-body-booking"><a class="lb-schedule-body-booking-link" href="<?php echo $url; ?>"><?php echo get_lightenbody_option('trans_book_now', 'Book now'); ?></a></p>
+                                            <p class="lb-schedule-table-body-booking"><a class="lb-schedule-body-booking-link" <?php if($scheduleEvent->color): ?>style="background-color: <?php echo $scheduleEvent->color; ?>; border-color: <?php echo $scheduleEvent->color; ?>"<?php endif; ?> href="<?php echo $url; ?>"><?php echo get_lightenbody_option('trans_book_now', 'Book now'); ?></a></p>
                                         <?php endif; ?>
                                     </div>
                                     <!-- end of SINGLE CLASS -->
@@ -111,17 +115,19 @@
         <?php if($hasEveningSchedule): ?>
             <!-- EVENING -->
             <div class="lb-schedule-evening-wrapper">
+                <div class="lb-schedule-day-part-name">
+                    <span class="ng-binding"><?php echo get_lightenbody_option('trans_evening', 'Evening'); ?></span>
+                </div>
                 <?php foreach($schedule as $item): ?>
                     <!-- SINGLE DAY BODY -->
                     <div class="lb-schedule-single-day">
-                        <div class="lb-schedule-day-part-name">
-                            <span class="ng-binding"><?php echo get_lightenbody_option('trans_evening', 'Evening'); ?></span>
-                        </div>
                         <?php if(isset($item->scheduleEvents->evening)): ?>
                             <?php foreach($item->scheduleEvents->evening as $scheduleEvent): ?>
                                 <?php if(!$scheduleEvent->isHidden): ?>
                                     <!-- SINGLE CLASS -->
-                                    <div class="lb-schedule-single-class" id="<?php echo $scheduleEvent->referenceId; ?>">
+                                    <div class="lb-schedule-single-class <?php if($scheduleEvent->color): ?>lb-schedule-single-class-highlighted<?php endif; ?>" id="<?php echo $scheduleEvent->referenceId; ?>" <?php if($scheduleEvent->color): ?>style="border-color: <?php echo $scheduleEvent->color; ?>"<?php endif; ?>>
+                                        <div class="lb-schedule-single-class-highlight-background" style="background-color: <?php echo $scheduleEvent->color; ?>"></div>
+                                        <div class="lb-schedule-single-class-highlight" style="border-color: <?php echo $scheduleEvent->color; ?>"></div>
                                         <p class="lb-schedule-table-body-time"><?php echo $scheduleEvent->startTime . ' &ndash; ' . $scheduleEvent->endTime; ?></p>
                                         <p class="lb-schedule-table-body-class"><?php echo $scheduleEvent->scheduleMeta->classService->name->{"$locale"}->value; ?></p>
                                         <?php if(get_lightenbody_option('show_teacher', 1)): ?>
@@ -144,7 +150,7 @@
                                                 'lightenbody-api-source'    => $apiSource
                                             ]); ?>
                                             <?php $url = sprintf("$baseUrl/%s/frontoffice,iframe/delegate?%s", $uuid, $parameters); ?>
-                                            <p class="lb-schedule-table-body-booking"><a class="lb-schedule-body-booking-link" href="<?php echo $url; ?>"><?php echo get_lightenbody_option('trans_book_now', 'Book now'); ?></a></p>
+                                            <p class="lb-schedule-table-body-booking"><a class="lb-schedule-body-booking-link" <?php if($scheduleEvent->color): ?>style="background-color: <?php echo $scheduleEvent->color; ?>; border-color: <?php echo $scheduleEvent->color; ?>"<?php endif; ?> href="<?php echo $url; ?>"><?php echo get_lightenbody_option('trans_book_now', 'Book now'); ?></a></p>
                                         <?php endif; ?>
                                     </div>
                                     <!-- end of SINGLE CLASS -->

@@ -55,6 +55,7 @@
 }
 .lb-schedule-calendar-wrapper .lb-schedule {
     float: left;
+    width: 100%;
 }
 .lb-schedule-calendar-wrapper .lb-schedule .lb-schedule-morning-wrapper,
 .lb-schedule-calendar-wrapper .lb-schedule .lb-schedule-afternoon-wrapper,
@@ -68,9 +69,10 @@
     float: left;
     padding: 7px;
     width: 14.27%;
+    min-width: 14.27%;
     text-align: center;
 }
-.lb-schedule-calendar-wrapper .lb-schedule .lb-schedule-single-day .lb-schedule-day-part-name {
+.lb-schedule-calendar-wrapper .lb-schedule .lb-schedule-day-part-name {
     float: left;
     position: absolute;
     height: 100%;
@@ -79,16 +81,16 @@
     width: 10px;
     border-left: 10px solid;
 }
-.lb-schedule-calendar-wrapper .lb-schedule .lb-schedule-morning-wrapper .lb-schedule-single-day .lb-schedule-day-part-name {
+.lb-schedule-calendar-wrapper .lb-schedule .lb-schedule-morning-wrapper .lb-schedule-day-part-name {
     border-color: #F9EABE;
 }
-.lb-schedule-calendar-wrapper .lb-schedule .lb-schedule-afternoon-wrapper .lb-schedule-single-day .lb-schedule-day-part-name {
+.lb-schedule-calendar-wrapper .lb-schedule .lb-schedule-afternoon-wrapper .lb-schedule-day-part-name {
     border-color: #BBE0D3;
 }
-.lb-schedule-calendar-wrapper .lb-schedule .lb-schedule-evening-wrapper .lb-schedule-single-day .lb-schedule-day-part-name {
+.lb-schedule-calendar-wrapper .lb-schedule .lb-schedule-evening-wrapper .lb-schedule-day-part-name {
     border-color: #c9dde6;
 }
-.lb-schedule-calendar-wrapper .lb-schedule .lb-schedule-single-day .lb-schedule-day-part-name span {
+.lb-schedule-calendar-wrapper .lb-schedule .lb-schedule-day-part-name span {
     display: block;
     transform: rotate(270deg);
     text-transform: uppercase;
@@ -109,6 +111,38 @@
     border: 1px solid #c9dde6;
     padding: 10px 5px;
     float: left;
+    position: relative;
+}
+.lb-schedule-calendar-wrapper .lb-schedule .lb-schedule-single-day .lb-schedule-single-class > * {
+    z-index: 50;
+    position: relative;
+}
+.lb-schedule-calendar-wrapper .lb-schedule .lb-schedule-single-day .lb-schedule-single-class .lb-schedule-single-class-highlight {
+    position: absolute;
+    border-left: 4px solid;
+    height: 100%;
+    width: 4px;
+    top: 0;
+    left: -1px;
+    z-index: 2;
+}
+.lb-schedule-calendar-wrapper .lb-schedule .lb-schedule-single-day .lb-schedule-single-class .lb-schedule-single-class-highlight-background {
+    position: absolute;
+    border: 1px solid;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    opacity: .1;
+    z-index: 2;
+}
+.lb-schedule-calendar-wrapper .lb-schedule .lb-schedule-single-day .lb-schedule-single-class .lb-schedule-single-class-highlight,
+.lb-schedule-calendar-wrapper .lb-schedule .lb-schedule-single-day .lb-schedule-single-class .lb-schedule-single-class-highlight-background {
+    display: none;
+}
+.lb-schedule-calendar-wrapper .lb-schedule .lb-schedule-single-day .lb-schedule-single-class.lb-schedule-single-class-highlighted .lb-schedule-single-class-highlight,
+.lb-schedule-calendar-wrapper .lb-schedule .lb-schedule-single-day .lb-schedule-single-class.lb-schedule-single-class-highlighted .lb-schedule-single-class-highlight-background {
+    display: block;
 }
 .lb-schedule-calendar-wrapper .lb-schedule .lb-schedule-single-day .lb-schedule-single-class .lb-schedule-table-body-class {
     font-weight: bold;
@@ -130,4 +164,7 @@
     border-radius: 3px;
     color: #5096c3;
     padding: 5px 7px;
+}
+.lb-schedule-calendar-wrapper .lb-schedule-single-day .lb-schedule-single-class.lb-schedule-single-class-highlighted .lb-schedule-table-body-booking .lb-schedule-body-booking-link {
+    color: #fff;
 }
