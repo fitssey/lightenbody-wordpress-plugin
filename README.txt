@@ -29,6 +29,10 @@ Add [lightenbody-schedule locale="en_EN"] to your WordPress page
 
 == Changelog ==
 
+= 2.2.5 =
+* Implemented highlights for Calendar view.
+* Minor Calendar view style improvements.
+
 = 2.2.2 =
 * Implemented a few more options in the settings.
 * Implemented toggling between Agenda and Calendar views.
