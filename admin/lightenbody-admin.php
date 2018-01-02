@@ -73,6 +73,7 @@ class Lightenbody_Admin
                     $options['show_teacher'] = isset($input['show_teacher']) ? true : false;
                     $options['show_level'] = isset($input['show_level']) ? true : false;
                     $options['show_location'] = isset($input['show_location']) ? true : false;
+                    $options['show_teacher_nickname'] = isset($input['show_teacher_nickname']) ? true : false;
                     break;
                 case 'translations':
                     $options['trans_time'] = $input['trans_time'];

@@ -34,7 +34,11 @@
                                     <td class="lb-schedule-table-body-time"><?php echo $scheduleEvent->startTime . ' &ndash; ' . $scheduleEvent->endTime; ?></td>
                                     <td class="lb-schedule-table-body-class"><?php echo $scheduleEvent->scheduleMeta->classService->name->{"$locale"}->value; ?></td>
                                     <?php if(get_lightenbody_option('show_teacher', 1)): ?>
-                                        <td class="lb-schedule-table-body-member"><?php echo $scheduleEvent->member->user->fullName; ?></td>
+                                        <?php if(get_lightenbody_option('show_teacher_nickname', 0) && $scheduleEvent->member->nickname): ?>
+                                            <p class="lb-schedule-table-body-member"><?php echo $scheduleEvent->member->nickname; ?></p>
+                                        <?php else: ?>
+                                            <p class="lb-schedule-table-body-member"><?php echo $scheduleEvent->member->user->fullName; ?></p>
+                                        <?php endif; ?>
                                     <?php endif; ?>
                                     <?php if(get_lightenbody_option('show_level', 1)): ?>
                                         <td class="lb-schedule-table-body-level"><?php echo $scheduleEvent->scheduleMeta->classService->experienceLevel->name->{"$locale"}->value; ?></td>

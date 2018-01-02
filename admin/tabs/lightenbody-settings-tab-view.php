@@ -27,6 +27,9 @@
 	    <br>
 	    <label for="<?php echo $this->plugin_name; ?>-show_location">Show location</label>
 	    <input id="<?php echo $this->plugin_name; ?>-show_location" name="<?php echo $this->plugin_name; ?>[show_location]" type="checkbox" <?php if(get_lightenbody_option('show_location', 1)): ?>checked<?php endif; ?>>
+        <br>
+        <label for="<?php echo $this->plugin_name; ?>-show_location">Show teacher's nickname</label>
+        <input id="<?php echo $this->plugin_name; ?>-show_location" name="<?php echo $this->plugin_name; ?>[show_teacher_nickname]" type="checkbox" <?php if(get_lightenbody_option('show_teacher_nickname', 0)): ?>checked<?php endif; ?>>
 
 	    <br>
         <br>
