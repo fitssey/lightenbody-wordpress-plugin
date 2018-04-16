@@ -3,7 +3,7 @@ Contributors: lightenbody
 URL: http://lightenbody.com
 Tags: schedule, lightenbody
 Requires at least: 3.0.1
-Tested up to: 4.8.3
+Tested up to: 4.9.5
 PHP version: 5.4.0 or greater
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -28,6 +28,10 @@ Locale support example:
 Add [lightenbody-schedule locale="en_EN"] to your WordPress page
 
 == Changelog ==
+
+= 2.2.7 =
+* Fixed follow redirects in Curl connections.
+* Changed API base url from studio.lightenbody.com to app.fitssey.com
 
 = 2.2.6 =
 * Implemented an option to show teacher's nickname on the schedule.
