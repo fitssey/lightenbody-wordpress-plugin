@@ -84,6 +84,7 @@ class Lightenbody_Public
 
         $responseCode = $lightenbodyService->getResponseCode();
         $response = $lightenbodyService->getResponse();
+
         $locale = $atts['locale'];
         $schedule = isset($response->schedule) ? $response->schedule : null;
         $hasMorningSchedule = isset($response->hasMorningSchedule) ? $response->hasMorningSchedule : false;
