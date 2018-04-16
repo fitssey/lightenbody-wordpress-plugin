@@ -202,6 +202,7 @@ class LightenbodyService
             curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $httpVerb);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
             curl_setopt($curl, CURLOPT_REFERER, $_SERVER['HTTP_HOST']);
+            curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
 
             if(!empty($data))
             {
@@ -210,8 +211,6 @@ class LightenbodyService
 
             $result = curl_exec($curl);
             $info = curl_getinfo($curl);
-
-
 
             // if error found, throw the exception
             if($error = curl_error($curl))
