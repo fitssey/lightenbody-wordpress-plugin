@@ -21,7 +21,7 @@
         <br>
         <br>
 		<?php if($url): ?>
-            <p>Url: <?php echo $url; ?></p>
+            <p>URL: <?php echo $url; ?></p>
 		<?php endif; ?>
 		<?php if(isset($error)): ?>
             <p>Error: <?php echo $error->getMessage(); ?></p>
@@ -29,6 +29,8 @@
             <p>Connection:&nbsp;
 				<?php if(200 == $responseCode): ?>
                     OK (200)
+                <?php elseif(204 == $responseCode): ?>
+                    OK (204)
 				<?php elseif(404 == $responseCode): ?>
                     Not found (404)
 				<?php elseif(403 == $responseCode): ?>

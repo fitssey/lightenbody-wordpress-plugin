@@ -75,11 +75,11 @@ class Lightenbody_Public
 
         // let's make a call
         $lightenbodyService
-            ->post('/schedule', array(
+            ->get('/schedule?' . http_build_query(array(
                 'startDate' => $atts['start_date'],
                 'endDate'   => $atts['end_date'],
                 'view'      => $scheduleDisplay
-            ))
+            )))
         ;
 
         $responseCode = $lightenbodyService->getResponseCode();
@@ -87,9 +87,6 @@ class Lightenbody_Public
 
         $locale = $atts['locale'];
         $schedule = isset($response->schedule) ? $response->schedule : null;
-        $hasMorningSchedule = isset($response->hasMorningSchedule) ? $response->hasMorningSchedule : false;
-        $hasAfternoonSchedule = isset($response->hasAfternoonSchedule) ? $response->hasAfternoonSchedule : false;
-        $hasEveningSchedule = isset($response->hasEveningSchedule) ? $response->hasEveningSchedule : false;
         $baseUrl = $lightenbodyService->getBaseUrl();
 
         if(200 === $responseCode)
@@ -97,10 +94,14 @@ class Lightenbody_Public
             switch($scheduleDisplay)
             {
                 default:
-                case	 0:
+                case 'agendaView':
                     $template = 'views/lightenbody-schedule-agenda-view.php';
                     break;
-                case 1:
+
+                case 'calendarView':
+                    $hasMorningSchedule = isset($response->hasMorningSchedule) ? $response->hasMorningSchedule : false;
+                    $hasAfternoonSchedule = isset($response->hasAfternoonSchedule) ? $response->hasAfternoonSchedule : false;
+                    $hasEveningSchedule = isset($response->hasEveningSchedule) ? $response->hasEveningSchedule : false;
                     $template = 'views/lightenbody-schedule-calendar-view.php';
                     break;
             }

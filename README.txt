@@ -3,7 +3,7 @@ Contributors: lightenbody
 URL: http://lightenbody.com
 Tags: schedule, lightenbody
 Requires at least: 3.0.1
-Tested up to: 4.9.5
+Tested up to: 5.9.3
 PHP version: 5.4.0 or greater
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -17,7 +17,7 @@ personal account for each of your customers and many more features.
 
 == Installation ==
 
-Upload the plugin to your plugins directory, activate it and get the api credentials from your lightenbody's account.
+Upload the plugin to your plugins' directory, activate it and get the api credentials from your lightenbody's account.
 
 == Usage ==
 
@@ -28,6 +28,11 @@ Locale support example:
 Add [lightenbody-schedule locale="en_EN"] to your WordPress page
 
 == Changelog ==
+
+= 2.2.8 =
+* Bump API version from 2 to 4
+* Implemented new option to delegate booking to either popup or new window
+* Minor improvements in schedule views
 
 = 2.2.7 =
 * Fixed follow redirects in Curl connections.

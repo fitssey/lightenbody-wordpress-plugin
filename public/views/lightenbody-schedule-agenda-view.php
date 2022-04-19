@@ -32,19 +32,19 @@
                             <?php if(!$scheduleEvent->isHidden): ?>
                                 <tr id="<?php echo $scheduleEvent->referenceId; ?>">
                                     <td class="lb-schedule-table-body-time"><?php echo $scheduleEvent->startTime . ' &ndash; ' . $scheduleEvent->endTime; ?></td>
-                                    <td class="lb-schedule-table-body-class"><?php echo $scheduleEvent->scheduleMeta->classService->name->{"$locale"}->value; ?></td>
+                                    <td class="lb-schedule-table-body-class"><?php echo is_string($scheduleEvent->scheduleMeta->classService->name) ? $scheduleEvent->scheduleMeta->classService->name : $scheduleEvent->scheduleMeta->classService->name->{"$locale"}->value; ?></td>
                                     <?php if(get_lightenbody_option('show_teacher', 1)): ?>
                                         <?php if(get_lightenbody_option('show_teacher_nickname', 0) && $scheduleEvent->member->nickname): ?>
-                                            <p class="lb-schedule-table-body-member"><?php echo $scheduleEvent->member->nickname; ?></p>
+                                            <td class="lb-schedule-table-body-member"><?php echo $scheduleEvent->member->nickname; ?></td>
                                         <?php else: ?>
-                                            <p class="lb-schedule-table-body-member"><?php echo $scheduleEvent->member->user->fullName; ?></p>
+                                            <td class="lb-schedule-table-body-member"><?php echo $scheduleEvent->member->user->fullName; ?></td>
                                         <?php endif; ?>
                                     <?php endif; ?>
                                     <?php if(get_lightenbody_option('show_level', 1)): ?>
-                                        <td class="lb-schedule-table-body-level"><?php echo $scheduleEvent->scheduleMeta->classService->experienceLevel->name->{"$locale"}->value; ?></td>
+                                        <td class="lb-schedule-table-body-level"><?php echo is_string($scheduleEvent->scheduleMeta->classService->experienceLevel->name) ? $scheduleEvent->scheduleMeta->classService->experienceLevel->name : $scheduleEvent->scheduleMeta->classService->experienceLevel->name->{"$locale"}->value; ?></td>
                                     <?php endif; ?>
                                     <?php if(get_lightenbody_option('show_location', 1)): ?>
-                                        <td class="lb-schedule-table-body-location"><?php echo $scheduleEvent->room->location->name->{"$locale"}->value; ?></td>
+                                        <td class="lb-schedule-table-body-location"><?php echo $scheduleEvent->room->location->name; ?></td>
                                     <?php endif; ?>
                                     <?php if($scheduleEvent->hasStarted): ?>
                                         <td class="lb-schedule-table-body-booking-past"><?php echo get_lightenbody_option('trans_class_ended', 'Completed'); ?></td>
@@ -57,7 +57,7 @@
                                             'lightenbody-api-source'    => $apiSource
                                         ]); ?>
                                         <?php $url = sprintf("$baseUrl/%s/frontoffice,iframe/delegate?%s", $uuid, $parameters); ?>
-                                        <td class="lb-schedule-table-body-booking"><a class="lb-schedule-body-booking-link" href="<?php echo $url; ?>"><?php echo get_lightenbody_option('trans_book_now', 'Book now'); ?></a></td>
+                                        <td class="lb-schedule-table-body-booking"><a <?php if('popup' == get_lightenbody_option('delegate_booking_to')): ?>class="lb-schedule-body-booking-link"<?php else: ?>target="_blank"<?php endif; ?> href="<?php echo $url; ?>"><?php echo get_lightenbody_option('trans_book_now', 'Book now'); ?></a></td>
                                     <?php endif; ?>
                                 </tr>
                             <?php endif; ?>
