@@ -19,15 +19,28 @@ personal account for each of your customers and many more features.
 
 Upload the plugin to your plugins' directory, activate it and get the api credentials from your lightenbody's account.
 
-== Usage ==
+== Short code ==
 
 Basic example:
 Add [lightenbody-schedule] shortcode to your WordPress page
 
-Locale support example:
-Add [lightenbody-schedule locale="en_EN"] to your WordPress page
+Filter by Class Service example and start date:
+Add [lightenbody-schedule start-date="2022-01-01" filter-class-services="guid1,guid2"] to your WordPress page
+
+== Short code attributes ==
+
+- start-date (Y-m-d)
+- end-date (Y-m-d)
+- locale (en_EN or pl_PL)
+- display (agendaView or calendarView)
+- filter-class-services (guid1,guid2...)
+- filter-members (guid1,guid2...)
+- filter-locations (guid1,guid2...)
 
 == Changelog ==
+
+= 2.2.9 =
+* Implemented new shortcode attributes to filter schedule events
 
 = 2.2.8 =
 * Bump API version from 2 to 4

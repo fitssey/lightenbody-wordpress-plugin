@@ -39,7 +39,7 @@ class Lightenbody_Public
         $apiGuid = get_lightenbody_option('api_guid');
         $apiKey = get_lightenbody_option('api_key');
         $apiSource = get_lightenbody_option('api_source', 0);
-        $scheduleDisplay = get_lightenbody_option('schedule_display', 0);
+        $scheduleDisplay = get_lightenbody_option('schedule_display', 'agendaView');
         $weekDisplay = get_lightenbody_option('week_display', 0);
         $showTeacher = get_lightenbody_option('show_teacher', 1);
         $showLevel = get_lightenbody_option('show_level', 1);
@@ -63,12 +63,33 @@ class Lightenbody_Public
         // provide short code default parameters
         $atts = shortcode_atts(array(
             'locale'        => get_locale(),
-            'start_date'    => $startDate,
-            'end_date'      => $endDate,
+            'start-date'    => $startDate,
+            'end-date'      => $endDate,
             'display'       => $scheduleDisplay
         ), $shortCode);
 
-        $scheduleDisplay = $this->parse_schedule_display($atts['display']);
+        $filters = [];
+
+        if(isset($shortCode['filter-class-services']))
+        {
+            $filters['classServices'] = array_map(function($item) {
+                return trim($item);
+            }, explode(',', $shortCode['filter-class-services']));
+        }
+
+        if(isset($shortCode['filter-members']))
+        {
+            $filters['members'] = array_map(function($item) {
+                return trim($item);
+            }, explode(',', $shortCode['filter-members']));
+        }
+
+        if(isset($shortCode['filter-locations']))
+        {
+            $filters['locations'] = array_map(function($item) {
+                return trim($item);
+            }, explode(',', $shortCode['filter-locations']));
+        }
 
         // core objects
         $lightenbodyService = new LightenbodyService($uuid, $apiGuid, $apiKey, $apiSource);
@@ -76,9 +97,10 @@ class Lightenbody_Public
         // let's make a call
         $lightenbodyService
             ->get('/schedule?' . http_build_query(array(
-                'startDate' => $atts['start_date'],
-                'endDate'   => $atts['end_date'],
-                'view'      => $scheduleDisplay
+                'startDate' => $atts['start-date'],
+                'endDate'   => $atts['end-date'],
+                'view'      => $scheduleDisplay,
+                'filters'   => $filters
             )))
         ;
 
@@ -115,13 +137,5 @@ class Lightenbody_Public
         }
 
         return null;
-    }
-
-    private function parse_schedule_display($value)
-    {
-        if('agenda' === $value) return 0;
-        if('calendar' === $value) return 1;
-
-        return $value;
     }
 }
