@@ -10,7 +10,7 @@ $lightenbodyService = new LightenbodyService($uuid, $apiGuid, $apiKey, $apiSourc
 try
 {
 	$result = $lightenbodyService
-		->get('/test')
+		->get('/ping')
 	;
 
 	$url = $lightenbodyService->getApiUrl();

@@ -63,7 +63,7 @@ class NotFoundStudioApiGuidException extends \Exception
  */
 class LightenbodyService
 {
-    private $apiVersion = 2;
+    private $apiVersion = 4;
     private $baseUrl = 'https://app.fitssey.com';
     private $apiUrl = 'https://app.fitssey.com/<uuid>/api/v<version>/public';
     private $apiGuid;
@@ -203,6 +203,7 @@ class LightenbodyService
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
             curl_setopt($curl, CURLOPT_REFERER, $_SERVER['HTTP_HOST']);
             curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
+            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
 
             if(!empty($data))
             {
