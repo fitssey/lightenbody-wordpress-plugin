@@ -27,17 +27,13 @@ Add [lightenbody-schedule] shortcode to your WordPress page
 Filter by Class Service example and start date:
 Add [lightenbody-schedule start-date="2022-01-01" filter-class-services="guid1,guid2"] to your WordPress page
 
-== Short code attributes ==
-
-- start-date (Y-m-d)
-- end-date (Y-m-d)
-- locale (en_EN or pl_PL)
-- display (agendaView or calendarView)
-- filter-class-services (guid1,guid2...)
-- filter-members (guid1,guid2...)
-- filter-locations (guid1,guid2...)
+For more examples see Help tab in plugin settings.
 
 == Changelog ==
+
+= 2.3.1 =
+* Fixed showing No classes today message when all classes are hidden in that day.
+* Minor plugin improvements.
 
 = 2.3.0 =
 * Fixed translations.

@@ -185,7 +185,7 @@
     <div class="clearfix"></div>
 </div>
 <?php else: ?>
-    <p class="lb-schedule-error-message"><?php echo $options['no_public_schedule_translation']; ?></p>
+    <p class="lb-schedule-error-message"><?php echo get_lightenbody_option('trans_no_public_schedule', 'No public schedule.'); ?></p>
 <?php endif;?>
 </div>
 
