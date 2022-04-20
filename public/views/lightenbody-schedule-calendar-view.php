@@ -42,9 +42,11 @@
                                             <p class="lb-schedule-table-body-location"><?php echo $scheduleEvent->room->location->name; ?></p>
                                         <?php endif; ?>
                                         <?php if($scheduleEvent->hasStarted): ?>
-                                            <p class="lb-schedule-table-body-booking-past"><?php echo get_lightenbody_option('trans_class_completed', 'Completed'); ?></p>
+                                            <p class="lb-schedule-table-body-booking-past"><?php echo get_lightenbody_option('trans_completed', 'Completed'); ?></p>
                                         <?php elseif($scheduleEvent->isCancelled): ?>
-                                            <p class="lb-schedule-table-body-booking-cancelled"><?php echo get_lightenbody_option('trans_class_cancelled', 'Cancelled'); ?></p>
+                                            <p class="lb-schedule-table-body-booking-cancelled"><?php echo get_lightenbody_option('trans_cancelled', 'Cancelled'); ?></p>
+                                        <?php elseif(!$scheduleEvent->isAvailableForBookingAhead): ?>
+                                            <p class="lb-schedule-table-body-booking-not-available-yet"><?php echo get_lightenbody_option('trans_not_available_yet', 'Not available yet'); ?></p>
                                         <?php else: ?>
                                             <?php $parameters = http_build_query([
                                                 'referenceIds'              => [$scheduleEvent->referenceId],
@@ -97,9 +99,11 @@
                                             <p class="lb-schedule-table-body-location"><?php echo $scheduleEvent->room->location->name; ?></p>
                                         <?php endif; ?>
                                         <?php if($scheduleEvent->hasStarted): ?>
-                                            <p class="lb-schedule-table-body-booking-past"><?php echo get_lightenbody_option('trans_class_completed', 'Completed'); ?></p>
+                                            <p class="lb-schedule-table-body-booking-past"><?php echo get_lightenbody_option('trans_completed', 'Completed'); ?></p>
                                         <?php elseif($scheduleEvent->isCancelled): ?>
-                                            <p class="lb-schedule-table-body-booking-cancelled"><?php echo get_lightenbody_option('trans_class_cancelled', 'Cancelled'); ?></p>
+                                            <p class="lb-schedule-table-body-booking-cancelled"><?php echo get_lightenbody_option('trans_cancelled', 'Cancelled'); ?></p>
+                                        <?php elseif(!$scheduleEvent->isAvailableForBookingAhead): ?>
+                                            <p class="lb-schedule-table-body-booking-not-available-yet"><?php echo get_lightenbody_option('trans_not_available_yet', 'Not available yet'); ?></p>
                                         <?php else: ?>
                                             <?php $parameters = http_build_query([
                                                 'referenceIds'              => [$scheduleEvent->referenceId],
@@ -152,9 +156,11 @@
                                             <p class="lb-schedule-table-body-location"><?php echo $scheduleEvent->room->location->name; ?></p>
                                         <?php endif; ?>
                                         <?php if($scheduleEvent->hasStarted): ?>
-                                            <p class="lb-schedule-table-body-booking-past"><?php echo get_lightenbody_option('trans_class_completed', 'Completed'); ?></p>
+                                            <p class="lb-schedule-table-body-booking-past"><?php echo get_lightenbody_option('trans_completed', 'Completed'); ?></p>
                                         <?php elseif($scheduleEvent->isCancelled): ?>
-                                            <p class="lb-schedule-table-body-booking-cancelled"><?php echo get_lightenbody_option('trans_class_cancelled', 'Cancelled'); ?></p>
+                                            <p class="lb-schedule-table-body-booking-cancelled"><?php echo get_lightenbody_option('trans_cancelled', 'Cancelled'); ?></p>
+                                        <?php elseif(!$scheduleEvent->isAvailableForBookingAhead): ?>
+                                            <p class="lb-schedule-table-body-booking-not-available-yet"><?php echo get_lightenbody_option('trans_not_available_yet', 'Not available yet'); ?></p>
                                         <?php else: ?>
                                             <?php $parameters = http_build_query([
                                                 'referenceIds'              => [$scheduleEvent->referenceId],
