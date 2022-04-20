@@ -39,6 +39,10 @@ Add [lightenbody-schedule start-date="2022-01-01" filter-class-services="guid1,g
 
 == Changelog ==
 
+= 2.3.0 =
+* Fixed translations.
+* Fixed disabling book button when class is not available yet due to booking ahead setting.
+
 = 2.2.9 =
 * Implemented new shortcode attributes to filter schedule events
 
