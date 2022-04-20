@@ -31,6 +31,9 @@ For more examples see Help tab in plugin settings.
 
 == Changelog ==
 
+= 2.3.2 =
+* Brought back isHidden check.
+
 = 2.3.1 =
 * Fixed showing No classes today message when all classes are hidden in that day.
 * Minor plugin improvements.

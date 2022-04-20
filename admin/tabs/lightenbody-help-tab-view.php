@@ -1,6 +1,6 @@
 <div class="card">
     <h2><span class="dashicons dashicons-admin-generic"></span>&nbsp;Help</h2>
-    <div>lightenbody&trade; plugin version: 2.3.1</div>
+    <div>lightenbody&trade; plugin version: 2.3.2</div>
     <div>PHP version: <?php echo phpversion(); ?></div>
     <a href="http://lightenbody.com/support" target="_blank">http://lightenbody.com/support</a>
     <h2><span class="dashicons dashicons-admin-generic"></span>&nbsp;WordPress shortcode API</h2>
