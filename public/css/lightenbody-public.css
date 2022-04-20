@@ -17,7 +17,8 @@
 
 /* General schedule theme */
 .lb-schedule .lb-schedule-table-body-booking-past,
-.lb-schedule .lb-schedule-table-body-booking-cancelled {
+.lb-schedule .lb-schedule-table-body-booking-cancelled,
+.lb-schedule .lb-schedule-table-body-booking-not-available-yet {
     font-style: italic;
     color: #8f8f8f;
 }

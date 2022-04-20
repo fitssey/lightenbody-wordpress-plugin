@@ -11,6 +11,7 @@ $translations = array(
     'trans_book_now'                => 'Book now',
     'trans_completed'               => 'Completed',
     'trans_cancelled'               => 'Cancelled',
+    'trans_not_available_yet'       => 'Not available yet',
     'trans_morning'                 => 'Morning',
     'trans_afternoon'               => 'Afternoon',
     'trans_evening'                 => 'Evening',

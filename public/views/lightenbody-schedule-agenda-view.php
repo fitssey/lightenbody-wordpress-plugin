@@ -47,9 +47,11 @@
                                         <td class="lb-schedule-table-body-location"><?php echo $scheduleEvent->room->location->name; ?></td>
                                     <?php endif; ?>
                                     <?php if($scheduleEvent->hasStarted): ?>
-                                        <td class="lb-schedule-table-body-booking-past"><?php echo get_lightenbody_option('trans_class_ended', 'Completed'); ?></td>
+                                        <td class="lb-schedule-table-body-booking-past"><?php echo get_lightenbody_option('trans_completed', 'Completed'); ?></td>
                                     <?php elseif($scheduleEvent->isCancelled): ?>
-                                        <td class="lb-schedule-table-body-booking-cancelled"><?php echo get_lightenbody_option('trans_class_cancelled', 'Cancelled'); ?></td>
+                                        <td class="lb-schedule-table-body-booking-cancelled"><?php echo get_lightenbody_option('trans_cancelled', 'Cancelled'); ?></td>
+                                    <?php elseif(!$scheduleEvent->isAvailableForBookingAhead): ?>
+                                        <td class="lb-schedule-table-body-booking-not-available-yet"><?php echo get_lightenbody_option('trans_not_available_yet', 'Not available yet'); ?></td>
                                     <?php else: ?>
                                         <?php $parameters = http_build_query([
                                             'referenceIds'              => [$scheduleEvent->referenceId],

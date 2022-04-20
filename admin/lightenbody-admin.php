@@ -84,8 +84,9 @@ class Lightenbody_Admin
                     $options['trans_location'] = $input['trans_location'];
                     $options['trans_no_classes_today'] = $input['trans_no_classes_today'];
                     $options['trans_book_now'] = $input['trans_book_now'];
-                    $options['trans_class_completed'] = $input['trans_class_completed'];
-                    $options['trans_class_cancelled'] = $input['trans_class_cancelled'];
+                    $options['trans_completed'] = $input['trans_completed'];
+                    $options['trans_cancelled'] = $input['trans_cancelled'];
+                    $options['trans_not_available_yet'] = $input['trans_not_available_yet'];
                     $options['trans_no_public_schedule'] = $input['trans_no_public_schedule'];
                     $options['trans_morning'] = $input['trans_morning'];
                     $options['trans_afternoon'] = $input['trans_afternoon'];
